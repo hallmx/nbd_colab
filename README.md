@@ -10,19 +10,29 @@
 
 See the nbdev documentstion formore details of nbdev, a powerful system for exploratory programming, and why you may want to use it. These docs will simply focus on using nbd_colab as an aid to integrating nbded with Google drive and Google Colab.  
 
-There are a number of steps to using nbdev with Google Colab and google Drive
+## Create new project
+
+Clone a new nbdev template repo from your github to Google Drive.
+
+`clone_new_repo()`
+
+## Navigating your project
+
+Change directory to your home directory while it is linked to Colab.
+
+`home_dir()`
+
+
+## Module setup
+
+Each new module requires its own Colab notebook. Create a new python 3 notebook in Colab and name it according to the nbdev convention of incremental numbering followed by an underscore and a name describing its contents. For example, if this is the third notebook added to the project, and it contains syncing functions and code a conforming name might be '03_sync.ipynb'. 
+
+Then add the following code snippets in order to set up the notebook for nbdev integration.
+
+`# default_exp <module>`
+
+Where <module> is the name of the .py file that the notebook will create. IN the case of the 03_sync.ipynb notebook, the module name should be 'sync'. Submodules can be specified with <module.submodule'.
 
 
 
-1.   Create an nbdev template repository in your github account (see nbdev tutorial `https://nbdev.fast.ai/tutorial/#Upload-to-pypi`).
-2.   Configue the settings.ini file in the nbdev template repo (see nbdev tutorial `https://nbdev.fast.ai/tutorial/#Upload-to-pypi`).
-3.   Create a new python 3 instance (notebook) in Google Colab
-4.   !pip install nbd_colab from within the new notebook (it will automatically install nbdev itself)
-5.   Connect your Colab instance to Google drive with setup_drive()
-6.   Run clone_new_repo() to clone the nbdev template repo to your google drive
-7.   When you create a new notebook (new project module), install nbd_colab, 
-from nbd_colab.core import *, and run setup_nb to ensure the module is connected to the Google drive repo and is ready to go!
-
-
-
-
+## Publishing your project on Pypi

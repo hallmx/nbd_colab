@@ -44,18 +44,57 @@ summary: "nbd_colab is a thin wrapper of functions around nbdev to aid integrati
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>There are a number of steps to using nbdev with Google Colab and google Drive</p>
-<ol>
-<li>Create an nbdev template repository in your github account (see nbdev tutorial <code>https://nbdev.fast.ai/tutorial/#Upload-to-pypi</code>).</li>
-<li>Configue the settings.ini file in the nbdev template repo (see nbdev tutorial <code>https://nbdev.fast.ai/tutorial/#Upload-to-pypi</code>).</li>
-<li>Create a new python 3 instance (notebook) in Google Colab</li>
-<li>!pip install nbd_colab from within the new notebook (it will automatically install nbdev itself)</li>
-<li>Connect your Colab instance to Google drive with setup_drive()</li>
-<li>Run clone_new_repo() to clone the nbdev template repo to your google drive</li>
-<li>When you create a new notebook (new project module), install nbd_colab, 
-from nbd_colab.core import *, and run setup_nb to ensure the module is connected to the Google drive repo and is ready to go!</li>
-</ol>
+<h2 id="Create-new-project">Create new project<a class="anchor-link" href="#Create-new-project">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Clone a new nbdev template repo from your github to Google Drive.</p>
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>clone_new_repo()</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Navigating-your-project">Navigating your project<a class="anchor-link" href="#Navigating-your-project">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Change directory to your home directory while it is linked to Colab.</p>
+<p><code>home_dir()</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Module-setup">Module setup<a class="anchor-link" href="#Module-setup">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Each new module requires its own Colab notebook. Create a new python 3 notebook in Colab and name it according to the nbdev convention of incremental numbering followed by an underscore and a name describing its contents. For example, if this is the third notebook added to the project, and it contains syncing functions and code a conforming name might be '03_sync.ipynb'.</p>
+<p>Then add the following code snippets in order to set up the notebook for nbdev integration.</p>
+<p><code># default_exp &lt;module&gt;</code></p>
+<p>Where <module> is the name of the .py file that the notebook will create. IN the case of the 03_sync.ipynb notebook, the module name should be 'sync'. Submodules can be specified with &lt;module.submodule'.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Publishing-your-project-on-Pypi">Publishing your project on Pypi<a class="anchor-link" href="#Publishing-your-project-on-Pypi">&#182;</a></h2>
 </div>
 </div>
 </div>
