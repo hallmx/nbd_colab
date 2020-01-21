@@ -2,11 +2,6 @@
 > nbd_colab is a thin wrapper of functions around nbdev to aid integration of nbdev with Google drive and Google Colab. 
 
 
-```
-#export
-from nbd_colab.core import *
-```
-
 ## Install
 
 `pip install nbd_colab`
