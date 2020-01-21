@@ -15,7 +15,6 @@ import urllib
 def drive_setup():
   "Connect Google Drive to Colab instance"
   drive.mount('/content/drive', force_remount=True)
-  os._exit(00)
 
 # Cell
 class _StopExecution(Exception):
