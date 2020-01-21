@@ -4,9 +4,9 @@ __all__ = ['drive_setup', 'change_dir', 'home_dir', 'clone_new_repo', 'setup_nb'
 
 # Cell
 import os
-import nbdev
+from google.colab import drive
+from nbdev import *
 from nbdev.showdoc import *
-from fastcore.test import *
 from pathlib import Path
 from getpass import getpass
 import urllib
