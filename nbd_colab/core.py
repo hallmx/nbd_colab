@@ -4,17 +4,9 @@ __all__ = ['drive_setup', 'change_dir', 'home_dir', 'clone_new_repo', 'setup_nb'
 
 # Cell
 import os
-
-# Cell
-#export
-os.system('pip install nbdev')
-os.system('pip install fastcore')
 import nbdev
 from nbdev.showdoc import *
 from fastcore.test import *
-
-# Cell
-from google.colab import drive
 from pathlib import Path
 from getpass import getpass
 import urllib
@@ -40,12 +32,14 @@ home_dir = "/content/drive/My Drive"
 
 # Cell
 def _check_input(type, input):
+  "Utility funtion to check the users input and exit cell if invalid"
   if input == "":
     print(f'Error: {type} required')
     raise StopExecution
   else: return input
 
 def _get_dest_dir():
+  "Allows the user to input the destination folder for the cloned repo and checks it exists"
   dir = input(f'Destination directory {home_dir}/')
   dest_dir = home_dir+"/"+dir
   dir_exists = os.path.isdir(dest_dir)
@@ -56,6 +50,7 @@ def _get_dest_dir():
     raise _StopExecution
 
 def _get_repo(dir):
+  "Allows the user to enter the repo name and checks it doesn't already exist"
   repo = input('Repo name: ')
   repo_path = dir+"/"+repo
   path_exists = os.path.exists(repo_path)

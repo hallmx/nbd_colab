@@ -30,12 +30,6 @@ summary: "API details."
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-
 <div class="output_wrapper">
 <div class="output">
 
@@ -43,7 +37,7 @@ summary: "API details."
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="drive_setup" class="doc_header"><code>drive_setup</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L23" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>drive_setup</code>()</p>
+<h4 id="drive_setup" class="doc_header"><code>drive_setup</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L15" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>drive_setup</code>()</p>
 </blockquote>
 <p>Connect Google Drive to Colab instance</p>
 
@@ -70,7 +64,7 @@ summary: "API details."
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="change_dir" class="doc_header"><code>change_dir</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L34" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>change_dir</code>(<strong><code>path</code></strong>)</p>
+<h4 id="change_dir" class="doc_header"><code>change_dir</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L26" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>change_dir</code>(<strong><code>path</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -80,6 +74,13 @@ summary: "API details."
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Set the users home directory.</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 
@@ -99,7 +100,7 @@ summary: "API details."
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="clone_new_repo" class="doc_header"><code>clone_new_repo</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L69" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>clone_new_repo</code>()</p>
+<h4 id="clone_new_repo" class="doc_header"><code>clone_new_repo</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L64" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>clone_new_repo</code>()</p>
 </blockquote>
 <p>Clone repo from github to google drive and configure</p>
 
@@ -113,7 +114,10 @@ summary: "API details."
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Function to clone a remote repo on github to creat a local repo at a specified destination on google drive. The default destination used is the users home directory '/conten/drive/My Drive'. After successful cloning, the local repo is configured with users name, email, and password to allow automatic authentication during push/pull requests with the remote repo. Sharing the local repo (on google drive) should therefore be avoided as this risks exposing your github authentication credentials to others. We also nbdev_install_git_hooks to ensure notebook metadata is cleaned up before github integration.</p>
+<p>Function to clone a remote repo on github to creat a local repo at a specified destination on google drive.</p>
+<p>The repo will be cloned to '/conten/drive/My Drive' by default.</p>
+<p>After successful cloning, the local repo is automatically configured with users name, email, and password to allow automatic authentication for github integration. This requires the users github credentials (username and password) to be stored in the local repo on google drive (in the .git.config file). Sharing the local repo should therefore be avoided as this risks exposing your github authentication credentials to others.</p>
+<p>Automatic notebook cleaning using nbdev_install_git_hooks is also activated to to ensure notebook metadata is sanitised to smooth github integration.</p>
 
 </div>
 </div>
@@ -130,7 +134,7 @@ summary: "API details."
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="setup_nb" class="doc_header"><code>setup_nb</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L115" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>setup_nb</code>(<strong><code>repo</code></strong>, <strong><code>dir</code></strong>=<em><code>None</code></em>)</p>
+<h4 id="setup_nb" class="doc_header"><code>setup_nb</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L110" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>setup_nb</code>(<strong><code>repo</code></strong>, <strong><code>dir</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 <p>Setup a new module notebook for use with nbdev</p>
 
