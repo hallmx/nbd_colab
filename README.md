@@ -3,21 +3,6 @@
 
 
 ```
-from google.colab import drive
-drive.mount('/content/drive')
-```
-
-    Drive already mounted at /content/drive; to attempt to forcibly remount, call drive.mount("/content/drive", force_remount=True).
-
-
-```
-% cd /content/drive/My\ Drive/nbd_colab
-```
-
-    /content/drive/My Drive/nbd_colab
-
-
-```
 #export
 from nbd_colab.core import *
 ```

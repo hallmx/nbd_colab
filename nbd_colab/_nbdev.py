@@ -3,7 +3,6 @@
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
 index = {"drive_setup": "00_core.ipynb",
-         "StopExecution": "00_core.ipynb",
          "change_dir": "00_core.ipynb",
          "home_dir": "00_core.ipynb",
          "clone_new_repo": "00_core.ipynb",
