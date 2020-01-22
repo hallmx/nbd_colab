@@ -7,7 +7,8 @@ index = {"drive_setup": "00_core.ipynb",
          "clone_new_repo": "00_core.ipynb",
          "change_dir": "00_core.ipynb"}
 
-modules = ["core.py"]
+modules = ["core.py",
+           "tutorial.py"]
 
 doc_url = "https://hallmx.github.io/nbd_colab/"
 

@@ -58,12 +58,6 @@ summary: "API details."
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Clone-new-repo">Clone new repo<a class="anchor-link" href="#Clone-new-repo">&#182;</a></h2>
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
@@ -90,17 +84,10 @@ summary: "API details."
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Function to clone a remote repo on github to creat a local repo at a specified destination on google drive.</p>
-<p>The repo will be cloned to '/conten/drive/My Drive' by default.</p>
-<p>After successful cloning, the local repo is automatically configured with users name, email, and password to allow automatic authentication for github integration. This requires the users github credentials (username and password) to be stored in the local repo on google drive (in the .git.config file). Sharing the local repo should therefore be avoided as this risks exposing your github authentication credentials to others.</p>
-<p>Automatic notebook cleaning using nbdev_install_git_hooks is also activated to to ensure notebook metadata is sanitised to smooth github integration.</p>
+<p>Function to clone a remote repo on github to Google Drive. The user will be prompted to enter a destination ('/content/drive/my Drive is the default), the repo name on github, their github account username, email and password.</p>
+<p>After successful cloning, the local repo is automatically configured with users username and password to allow automatic authentication for github integration. This requires the users github credentials (username and password) to be stored in the local repo on google drive (in the .git.config file). Sharing the local repo should therefore be avoided as this risks exposing your github credentials to others.</p>
+<p>Automatic notebook cleaning using nbdev_install_git_hooks is also activated to to ensure notebook metadata is sanitized for smooth github integration.</p>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Utilities">Utilities<a class="anchor-link" href="#Utilities">&#182;</a></h2>
 </div>
 </div>
 </div>

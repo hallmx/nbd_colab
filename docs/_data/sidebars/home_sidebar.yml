@@ -12,6 +12,9 @@ entries:
     - output: web,pdf
       title: nbd_colab
       url: /core
+    - output: web,pdf
+      title: Title
+      url: /tutorial
     output: web
     title: nbd_colab
   output: web
