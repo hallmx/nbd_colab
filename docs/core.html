@@ -5,7 +5,7 @@ title: Project setup with nbd_colab
 keywords: fastai
 sidebar: home_sidebar
 
-summary: "The nbd_colab API exposes the following functions for **helping** set up a new project with nbdev, Google Colaboratory and Google Drive integration."
+summary: "The nbd_colab API exposes the following functions for helping set up a new project with nbdev, Google Colaboratory and Google Drive integration."
 ---
 <!--
 
@@ -39,7 +39,7 @@ summary: "The nbd_colab API exposes the following functions for **helping** set 
 <div class="output_markdown rendered_html output_subarea ">
 <h4 id="drive_setup" class="doc_header"><code>drive_setup</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L15" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>drive_setup</code>()</p>
 </blockquote>
-<p>Connect Google Drive to Colab instance</p>
+<p>Connect the current Colab instance to the users Google Drive</p>
 
 </div>
 
@@ -53,22 +53,6 @@ summary: "The nbd_colab API exposes the following functions for **helping** set 
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&#39;/content/drive/My Drive&#39;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
@@ -118,8 +102,9 @@ summary: "The nbd_colab API exposes the following functions for **helping** set 
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="change_dir" class="doc_header"><code>change_dir</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L115" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>change_dir</code>(<strong><code>path</code></strong>)</p>
+<h4 id="change_dir" class="doc_header"><code>change_dir</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L116" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>change_dir</code>(<strong><code>path</code></strong>)</p>
 </blockquote>
+<p>Change directory to 'path'</p>
 
 </div>
 
@@ -141,8 +126,9 @@ summary: "The nbd_colab API exposes the following functions for **helping** set 
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="home_dir" class="doc_header"><code>home_dir</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L120" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>home_dir</code>()</p>
+<h4 id="home_dir" class="doc_header"><code>home_dir</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L123" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>home_dir</code>()</p>
 </blockquote>
+<p>Change directory to the users home directory on Google Drive '/content/drive/My Drive'</p>
 
 </div>
 

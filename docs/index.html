@@ -107,7 +107,7 @@ from nbdev import *</code></pre>
 <p><code>clone_new_repo()</code></p>
 <p>Follow the instructions and input the required details at the prompts. The remote repository wil be cloned to the users home directory on Google Drive, usually '/content/drive/My Drive', by default but this can be customized to anywhere on the users Google Drive at the first prompt.</p>
 <p>Successfully cloned repositories are automatically configured for integration with the remote Github repository and git hooks are installed with <code>nbdev_git_hooks</code>. Nbdev git hooks gives smoother Github integration by cleaning up notebook metadata before pushes.</p>
-<p>NB. The users Github username and password are stored (unencrypted) in the cloned repository .git/config file to allow automatic authentication when Colab interacts with Github during git pushes. They need to be stored in advance because Colab has no facility for prompting users for authentication details when needed from within Colab notebooks. This is far from ideal but there appears no way around it and so users must be careful NOT to share the cloned repository folder or files from Google Drive as this risks exposing their Github credentials.</p>
+<p>NB. The users Github username and password are stored (unencrypted) in the cloned repository .git/config file to allow automatic authentication when Colab interacts with Github during git pushes. They need to be stored in advance because Colab has no facility for prompting users for authentication details from within Colab notebooks. This is far from ideal but there appears no way around it and so users must be careful NOT to share the cloned repository folder or files from Google Drive as this risks exposing their Github credentials.</p>
 
 </div>
 </div>

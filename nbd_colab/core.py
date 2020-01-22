@@ -13,7 +13,7 @@ import urllib
 
 # Cell
 def drive_setup():
-  "Connect Google Drive to Colab instance"
+  "Connect the current Colab instance to the users Google Drive"
   drive.mount('/content/drive', force_remount=True)
 
 # Cell
@@ -57,6 +57,7 @@ def _get_repo(dir):
 # Cell
 def clone_new_repo():
   "Clone repo from github to google drive and configure"
+
   print('  Important Information:\n\
   nbd_dev does not store user details but users Github username and password are stored in the cloned\n\
   repository on Google Drive to allow automatic authentication from Colaboratory notebooks.Take care\n\
@@ -113,10 +114,13 @@ def clone_new_repo():
 
 # Cell
 def change_dir(path):
-   p = Path(path)
-   os.chdir(p)
+  "Change directory to 'path'"
+  p = Path(path)
+  os.chdir(p)
 
 # Cell
+
 def home_dir():
-   p = Path(home_dir)
-   os.chdir(p)
+  "Change directory to the users home directory on Google Drive '/content/drive/My Drive'"
+  p = Path(home_dir)
+  os.chdir(p)
