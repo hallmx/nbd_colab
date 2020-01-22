@@ -5,7 +5,7 @@ title: Welcome to nbd_colab
 keywords: fastai
 sidebar: home_sidebar
 
-summary: "nbd_colab is a thin wrapper of functions around nbdev to aid integration of nbdev with Google drive and Google Colab. "
+summary: "nbd_colab is a thin wrapper around the nbdev library to facilitate the use of nbdev with Google Colab and Google Drive.  "
 ---
 <!--
 
@@ -37,27 +37,68 @@ summary: "nbd_colab is a thin wrapper of functions around nbdev to aid integrati
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Overview">Overview<a class="anchor-link" href="#Overview">&#182;</a></h2><p>See the nbdev documentstion formore details of nbdev, a powerful system for exploratory programming, and why you may want to use it. These docs will simply focus on using nbd_colab as an aid to integrating nbded with Google drive and Google Colab.</p>
+<h2 id="Overview">Overview<a class="anchor-link" href="#Overview">&#182;</a></h2><p>nbdev is a system for exploratory programming using Jupyter notebooks aimed at helping python developers practice truely literate programming. Ideally nbdev is used along with a python/linux environment on a local machine, but many machine learning and deep learning practitioners use GPUs via cloud providers, one of the most popular of which is Google Colaboratory.</p>
+<p>nbdev can work perfectly well with Colaboratory but their are a few quirks and twists to getting the nbdev programming system integrating smoothly with Colab abd Google Drive and this is where nbd_colab comes in.</p>
+<p>This module provides some useful tools for setting up nbdev with Google Colab and Drive and some helpful documentation for developers to get the most out of nbdev with Colab.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Create-new-project">Create new project<a class="anchor-link" href="#Create-new-project">&#182;</a></h2>
+<h2 id="How-to-use-nbd_colab">How to use nbd_colab<a class="anchor-link" href="#How-to-use-nbd_colab">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Clone a new nbdev template repo from your github to Google Drive.</p>
+<p>Normally, when developing on a local machine we would program in a Jupyter notebook and manage the project on the command line. While there is no command line as such when using Colab, we can still access the operating system and use the command line from Jupyter cells using the os module or  ! and % prefixes.</p>
+<p>Thus, is is entirely possible to manage an nbdev project from within the notebook you are using for development, but this can become confusing and cumbersome quite quickly. An alternative approach is to set up a Colab notebook outside of the project repo to act exclusively as the 'command line'. This notebook is not part of the project itself and instead is used for running tests, for Github and nbdev integration, making Pypi releases and anything else you would normally use the command line for during project development.</p>
+<p>To create a project management notebook,  the following assumes you are are logged in to Google Colaboratory and have access to Google Drive.</p>
+<ul>
+<li>Create a new python 3 Jupyter notebook in Colab.</li>
+<li>Install nbd_colab <code>!pip install nbd-colab</code></li>
+<li>Import nbd_dev <code>from nbd_colab import *</code>. This will also import nbdev and fastcore for unit testing</li>
+<li>Connect to Google Drive <code>drive_setup()</code>.</li>
+<li>Make sure the new notebook is saved separately from other projects or repos on Google drive</li>
+</ul>
+<p>You are now set up to manage an nbdev project from this project management notebook. But first you need to create one!</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Create-a-new-project">Create a new project<a class="anchor-link" href="#Create-a-new-project">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>First, follow the nbdev tutorial <a href="https://nbdev.fast.ai/tutorial/">https://nbdev.fast.ai/tutorial/</a> to generate a new Github repository from the nbdev template repo <a href="https://github.com/fastai/nbdev_template/generate">https://github.com/fastai/nbdev_template/generate</a> (you must be logged in to your Github account for this to work) and edit the settings.init file of the new repository as instructed.</p>
+<p>If your project needs to install other libraries add these to the requirements line in settings.init.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Then, from within your project management notebook (see above) clone the github repo to a location on Google Drive.</p>
 <p><code>clone_new_repo()</code></p>
+<p>Follow the instructions and enter the required details when prompted. The repo wil be cloned to the users home directory on Google Drive, usually '/content/drive/My Drive',  by default.</p>
+<p>After successful cloning, the new local repo is automatically configured for integration with the remote repo and <code>nbdev_git_hooks</code> is installed (gives smoother Github integration by cleaning up notebook metadata before pushes).</p>
+<p>NB. Github authentication credentials are required to allow automatic authentication when authentication is required by github (i.e. for git pushes). This is because Colab has no facility for prompting users for authentication details from within Colab notebooks. To enable automatic authentication, username and passwords are stored, unencrypted, in the local repo on Google Drive (in the .git/config file). Thus users must be careful NOT to share the local repo to avoid exposing their Github password.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Swap into the newly created repo with:</p>
+<p><code>change_dir('path-to-repo')</code> or <code>%cd path-to-repo</code></p>
+<p>and check cloning was successful by printing out the contents of the settings.init file</p>
+<p><code>! cat settings.init</code></p>
+<p>From here follow the instructions in the nbdev docs/tutorial (<a href="https://nbdev.fast.ai/tutorial/">https://nbdev.fast.ai/tutorial/</a>) to make an initial build of the project library and documentation. In short, run <code>!nbdev_bulld_lib</code> then <code>!nb_build_docs</code> from the project management notebook.</p>
 
 </div>
 </div>
@@ -70,7 +111,7 @@ summary: "nbd_colab is a thin wrapper of functions around nbdev to aid integrati
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Change directory to your home directory while it is linked to Colab.</p>
+<p>Change directory to your Googel Drive/Colab home directory '/content/drive/My Drive'</p>
 <p><code>home_dir()</code></p>
 
 </div>
@@ -78,23 +119,101 @@ summary: "nbd_colab is a thin wrapper of functions around nbdev to aid integrati
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Module-setup">Module setup<a class="anchor-link" href="#Module-setup">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Each new module requires its own Colab notebook. Create a new python 3 notebook in Colab and name it according to the nbdev convention of incremental numbering followed by an underscore and a name describing its contents. For example, if this is the third notebook added to the project, and it contains syncing functions and code a conforming name might be '03_sync.ipynb'.</p>
-<p>Then add the following code snippets in order to set up the notebook for nbdev integration.</p>
-<p><code># default_exp &lt;module&gt;</code></p>
-<p>Where <module> is the name of the .py file that the notebook will create. IN the case of the 03_sync.ipynb notebook, the module name should be 'sync'. Submodules can be specified with &lt;module.submodule'.</p>
+<p>Change directory to <code>path</code></p>
+<p><code>change_dir(path)</code></p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Publishing-your-project-on-Pypi">Publishing your project on Pypi<a class="anchor-link" href="#Publishing-your-project-on-Pypi">&#182;</a></h2>
+<h2 id="Add-a-new-Colab-notebook-to-your-project">Add a new Colab notebook to your project<a class="anchor-link" href="#Add-a-new-Colab-notebook-to-your-project">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It is good practice to bundle related functions and classes together in a separate notebook, which then forms the basis of a importable module.</p>
+<p>Create a new python 3 notebook in Colab and name it according to the nbdev convention of incremental numbering followed by an underscore and a name describing its contents. For example, if this is the third notebook added to the project, and it contains syncing functions and code a conforming name might be '03_sync.ipynb'.</p>
+<p>The new notebook may not be created in the project repo on google drive. If not, locate it in the default location where new notebooks are created (commonly the 'Colab Notebooks' folder in /My Drive), then right click the notebook and select 'move'. Use the pop up box to move it to the right location in the project repo.</p>
+<p>Then add and run the following code snippets in seperate cells in order to set up the notebook for nbdev integration.</p>
+<p>In the first cell add:</p>
+<p><code># default_exp &lt;module&gt;</code></p>
+<p>Where <module> is the name of the .py file that the notebook will create. IN the case of the 03_sync.ipynb notebook, the module name should be 'sync'. Submodules can be specified with &lt;module.submodule'.</p>
+<p>Add autoreload functionality to any changes in one notebook module are automatically updated in linked module notebooks:</p>
+
+<pre><code>#hide
+%load_ext autoreload
+%autoreload 2</code></pre>
+<p>Then code to connect your Colab instance to Google Drive:</p>
+
+<pre><code># hide
+from google.colab import drive
+drive.mount('/content/drive')</code></pre>
+<p>Required installs. Fastcore is required for running tests from nbdev.</p>
+
+<pre><code># hide
+!pip install nbdev
+!pip install fastcore</code></pre>
+<p>Import modules:</p>
+
+<pre><code>#export
+import os
+from nbdev import *
+from nbdev.showdoc import *</code></pre>
+<p>Add the in-notebook export cell. Running this cell exports modules directly from the notebook (without having to go to the command line). The nbdev docs suggest adding it as the final cell in the notebook.</p>
+
+<pre><code>#hide
+from nbdev.export import notebook2script
+notebook2script()</code></pre>
+<p>Finally, cd into the root directoryof your <code>repo</code> on Google Drive <code>cd /content/drive/My drive/repo</code> and your ready to code your project.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Managing-your-project">Managing your project<a class="anchor-link" href="#Managing-your-project">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the project management notebook, change directory to the local repo root directory on Google Drive.</p>
+<p><code>change_dir('path-to-repo')</code>  or  <code>% cd path-to-repo</code></p>
+<p>From here, all nbdev and github commands work as expected.</p>
+<p>Build the library, build the docs and run tests with <code>!nbdev_build_lib</code>, <code>!nbdev_build_docs</code>, and <code>nbdev_test_nbs</code>. See the nbdev docs and tutorial for all available commands.</p>
+<p>Push to github with  <code>!git.status</code>, <code>!git add -A</code>, <code>!git commit -am "message"</code>, and <code>!git push</code>. The full range of Github commands (prefixed by !) will work normally.</p>
+<p>Publish to pypi by following the instructions in the nbdev tutorial <a href="https://nbdev.fast.ai/tutorial/">https://nbdev.fast.ai/tutorial/</a>. Creating a _pypirc file must be done manually but <code>!pip install twine</code> and <code>!make release</code> work normally from any Colab notebook with nbdev installed.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Quirks-and-tips-for-using-nbdev-system-with-Colab-and-Google-Drive">Quirks and tips for using nbdev system with Colab and Google Drive<a class="anchor-link" href="#Quirks-and-tips-for-using-nbdev-system-with-Colab-and-Google-Drive">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><p>To use nbdev/Github/pypi functionality it is necessary to <code>!cd</code> into the local project repo on Google Drive</p>
+</li>
+<li><p>There is no facility in Google Colab to edit text files so editing text files (suchj as for example 'settings.init' or '<strong>init</strong>.py' etc) requires either linking a text editor to your Google Drive or simply downloading the text file from Google drive to your local machine, editing it locally with your text editor of choice, then re-uploading it to Google Drive when done. Same named files will overide previous versions when uploaded.</p>
+</li>
+<li><p><code>show_doc(class.method)</code> doesn't give the expected notebook output due (I think) to Colab's limited interactivity. However, it works fine when the documentation is built with <code>!nbdev_build_docs</code> so do continue use it as instructed in the nbdev docs/tutorial.</p>
+</li>
+<li><p>Exceptions (errors)  during execution of nbdev commands in a Colab notebook, often result in a runtime reset and a return to the Google drive root diectory '/content'. Check the current directory after exceptions with <code>!pwd</code> and cd back to the repo if needed.</p>
+</li>
+<li><p>Running <code>!nbdev_test_nbs</code> runs tests on all notebooks in the project. As well as passing specific tests, project notebooks must also be able to run from start to finish independently to pass. For example, if a notebook contains code to connect to Google Drive (e.g. <code>drive.mount("/content/drive")</code>,  but is not connected to Google Drive at the time of the test, it will fail because notebook execution will stall at this point pending user input.</p>
+</li>
+<li><p>Notebook cells relying on installs specifically within the Colab environment will cause Github tests to fail during a github push. The push and githubpages build still works fine, but the push is marked as failed with a red cross. A common culprit is <code>from google.colab import drive</code>. Comment this out if you want the github tests to succeed during a push</p>
+</li>
+<li><p>There must be others - I'll add to the list as I become aware of them!</p>
+</li>
+</ul>
+
 </div>
 </div>
 </div>
