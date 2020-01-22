@@ -27,20 +27,23 @@ summary: "A quick guide to adding a new Colaboratory notebook/module to your pro
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Add-a-new-Colab-notebook/module-to-your-project-repository.">Add a new Colab notebook/module to your project repository.<a class="anchor-link" href="#Add-a-new-Colab-notebook/module-to-your-project-repository.">&#182;</a></h2>
+<h2 id="Add-a-new-Colab-notebook/module.">Add a new Colab notebook/module.<a class="anchor-link" href="#Add-a-new-Colab-notebook/module.">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Create a new python 3 notebook in Colab and name it according to the nbdev convention of incremental numbering (00, 01, 02 etc) followed by an underscore and a name describing its contents. For example, if this is the third notebook added to the project, and it contains networking functionality, an appropriate name might be '03_network.ipynb'.</p>
-<p>Note that Colab may not create the notebook directly in the project repo on google drive. If not, locate it at the default location where new notebooks are created (commonly the 'Colab Notebooks' folder in /My Drive), then right click the notebook and select 'move'. Use the pop up box to move it to the desired location in the local project directory.</p>
-<p>Then add and run the following code snippets in seperate cells in order to set up the notebook for nbdev integration.</p>
+<p>Follow the steps below to add a new Colab notebook/module to your project repository on Google Drive.</p>
+<p>Create a new python 3 notebook in Gooogle Colaboratory (Colab) and name it according to the nbdev convention of incremental numbering (00, 01, 02 etc) followed by an underscore and a name describing its contents. For example, if this is the third notebook added to the project, and it contains networking functionality, an appropriate name might be '03_network.ipynb'.</p>
+<p>Note that Colab may not create the notebook directly in the project repository on Google Drive. If not, locate it at the default location where new notebooks are created (commonly the 'Colab Notebooks' folder in '/My Drive'), then right click the notebook and select 'move'. Use the pop up box to move it to the desired location in the cloned project directory.</p>
+<p>Then add and run the following code snippets in separate cells in order to set up the notebook for nbdev integration.</p>
 <ol>
 <li><p>In the first cell add:</p>
 <p><code># default_exp &lt;module&gt;</code></p>
-<p>Where <module> is the name of the .py file that the notebook will create. IN the case of the 03_sync.ipynb notebook, the module name should be 'sync'. Submodules can be specified with &lt;module.submodule'.</p>
 </li>
+</ol>
+<p>Where <module> is the name of the .py file that the notebook will create. In the case of the 03_network.ipynb notebook, the module name should be 'network'. Submodules can be specified with &lt;module.submodule'.</p>
+<ol>
 <li><p>Add autoreload functionality to any changes in one notebook module are automatically updated in linked module notebooks:</p>
 
 <pre><code>#hide
@@ -76,9 +79,9 @@ from nbdev.showdoc import *</code></p>
 <pre><code>#hide
 from nbdev.export import notebook2script
 notebook2script()</code></pre>
-<p>Finally, cd into the root directory of your project repository <code>repo</code> on Google Drive <code>cd /content/drive/My drive/repo</code> and you're ready to go. See the nbdev tutorial and documentation on customizing the above steps and code for a modules particular needs <a href="http://nbdev.fast.ai/index.html">http://nbdev.fast.ai/index.html</a>.</p>
 </li>
 </ol>
+<p>Finally, cd into the root directory of your project repository <code>repo</code> on Google Drive <code>cd /content/drive/My drive/repo</code> and you're ready to go. See the nbdev tutorial and documentation on customizing the above steps and code for a module's particular needs <a href="http://nbdev.fast.ai/index.html">http://nbdev.fast.ai/index.html</a>.</p>
 
 </div>
 </div>
