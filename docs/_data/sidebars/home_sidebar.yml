@@ -13,7 +13,7 @@ entries:
       title: nbd_colab
       url: /core
     - output: web,pdf
-      title: Title
+      title: Tutorial
       url: /tutorial
     output: web
     title: nbd_colab
