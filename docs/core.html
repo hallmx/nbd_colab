@@ -1,11 +1,11 @@
 ---
 
-title: Setting up a new project with nbd_colab API
+title: Project setup with nbd_colab
 
 keywords: fastai
 sidebar: home_sidebar
 
-summary: "The nbd_colab API exposes the following functions for helpig set up a new project with nbdev, Google Colaboratory and Google Drive integration."
+summary: "The nbd_colab API exposes the following functions for **helping** set up a new project with nbdev, Google Colaboratory and Google Drive integration."
 ---
 <!--
 
@@ -54,6 +54,22 @@ summary: "The nbd_colab API exposes the following functions for helpig set up a 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;/content/drive/My Drive&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 
@@ -84,9 +100,8 @@ summary: "The nbd_colab API exposes the following functions for helpig set up a 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Function to clone a remote repo on github to Google Drive. The user will be prompted to enter a destination ('/content/drive/my Drive is the default), the repo name on github, their github account username, email and password.</p>
-<p>After successful cloning, the local repo is automatically configured with users username and password to allow automatic authentication for github integration. This requires the users github credentials (username and password) to be stored in the local repo on google drive (in the .git.config file). Sharing the local repo should therefore be avoided as this risks exposing your github credentials to others.</p>
-<p>Automatic notebook cleaning using nbdev_install_git_hooks is also activated to to ensure notebook metadata is sanitized for smooth github integration.</p>
+<p>Function to clone a remote repository to the users Google Drive. Repositories will be cloned to '/content/drive/My Drive' by default but this can be customized to anywhere on the users Google Drive at the first prompt.</p>
+<p>Successfully cloned repositories are automatically configured for integration with the remote Github repository and git hooks are installed with nbdev_git_hooks. Nbdev git hooks gives smoother Github integration by cleaning up notebook metadata before pushes.</p>
 
 </div>
 </div>
@@ -103,7 +118,7 @@ summary: "The nbd_colab API exposes the following functions for helpig set up a 
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="change_dir" class="doc_header"><code>change_dir</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L104" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>change_dir</code>(<strong><code>path</code></strong>)</p>
+<h4 id="change_dir" class="doc_header"><code>change_dir</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L115" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>change_dir</code>(<strong><code>path</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -126,7 +141,7 @@ summary: "The nbd_colab API exposes the following functions for helpig set up a 
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="home_dir" class="doc_header"><code>home_dir</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L109" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>home_dir</code>()</p>
+<h4 id="home_dir" class="doc_header"><code>home_dir</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L120" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>home_dir</code>()</p>
 </blockquote>
 
 </div>

@@ -10,10 +10,10 @@ entries:
       title: Overview
       url: /
     - output: web,pdf
-      title: Setting up a new project with nbd_colab API
+      title: Project setup with nbd_colab
       url: /core
     - output: web,pdf
-      title: Adding notebook/modules to your project
+      title: Adding a new notebook/module
       url: /tutorial
     output: web
     title: nbd_colab

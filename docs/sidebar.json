@@ -1,7 +1,7 @@
 {
   "nbd_colab": {
     "Overview": "/",
-    "Setting up a new project with nbd_colab API": "/core",
-    "Adding notebook/modules to your project": "/tutorial"
+    "Project setup with nbd_colab": "/core",
+    "Adding a new notebook/module": "/tutorial"
   }
 }

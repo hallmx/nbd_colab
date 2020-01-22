@@ -26,10 +26,10 @@ home_dir = "/content/drive/My Drive"
 
 # Cell
 def _check_input(type, input):
-  "Utility funtion to check the users input and exit cell if invalid"
+  "Utility function to check the users input and exit cell if invalid"
   if input == "":
-    print(f'Error: {type} required')
-    raise StopExecution
+    print(f'Error: {type} required ')
+    raise _StopExecution
   else: return input
 
 def _get_dest_dir():
@@ -45,7 +45,7 @@ def _get_dest_dir():
 
 def _get_repo(dir):
   "Allows the user to enter the repo name and checks it doesn't already exist"
-  repo = input('Repo name: ')
+  repo = _check_input('repository name', input('Repo name: '))
   repo_path = dir+"/"+repo
   path_exists = os.path.exists(repo_path)
   if path_exists:
@@ -57,12 +57,15 @@ def _get_repo(dir):
 # Cell
 def clone_new_repo():
   "Clone repo from github to google drive and configure"
-  print('\n** nbd_dev does NOT store user details but github username and password \nare stored in the local github repo to allow automatic authentication from Colab.\n')
+  print('  Important Information:\n\
+  nbd_dev does not store user details but users Github username and password are stored in the cloned\n\
+  repository on Google Drive to allow automatic authentication from Colaboratory notebooks.Take care\n\
+  therefore, NOT to share the cloned repository with anyone as this risks exposing user credentials.\n')
 
   dest_dir = _get_dest_dir()
   repo = _get_repo(dest_dir)
-  user = input('Username: ')
-  user_email = input('User email: ')
+  user = _check_input('Username', input('Username: '))
+  user_email = _check_input('User email', input('User email: '))
   password = getpass('Password: ')
 
   # converts password into url format
@@ -81,18 +84,26 @@ def clone_new_repo():
       cmd_string, password = None, None
 
     if os.path.exists(dest_dir+"/"+repo):
-      print(f'{repo_name} successfully cloned into {dest_dir}:')
-      os.system('ls')
+      print(f'{repo} successfully cloned into {dest_dir}')
     else:
       print('Error: Clone failed. Please review entries and try again. User details purged')
       raise _StopExecution
 
     # save user email and username into local git repo to identify user for git commands
-    os.system('git config user.name user')
-    os.system('git config user.email user_email')
+    try:
+      os.system('git config user.name user')
+      os.system('git config user.email user_email')
+    except exception as e:
+     print('Git configuration failed. Please manually configure the local repo with username and email')
+     print(e)
 
     # Install git hooks to clean up notebook metadata for smooth github integration
-    os.system('nbdev_install_git_hooks')
+    try:
+      os.system('nbdev_install_git_hooks')
+      print('nbdev git hooks successfully installed')
+    except exception as e:
+      print('Failed to install git hooks. Try manually installing with !nbdev_install_git_hooks')
+      print(e)
 
   else:
     cmd_string, password = None, None
