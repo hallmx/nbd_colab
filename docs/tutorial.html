@@ -23,9 +23,6 @@ summary: "A quick guide to adding a new Colaboratory notebook to your project re
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Create a new python 3 notebook in Gooogle Colaboratory (Colab) and name it according to the nbdev convention of incremental numbering (00, 01, 02 etc) followed by an underscore and a name describing its contents. For example, if this is the third notebook added to the project, and it contains tests, an appropriate name might be '03_tests.ipynb'. Note that the new notebook may not be created directly in the project repository on Google Drive. If not, locate it on your Google Drive (commonly the 'Colab Notebooks' folder in '/My Drive'), and move it to the project repo by right clicking and selecting 'move'.</p>
@@ -54,9 +51,11 @@ drive.mount('/content/drive')</code></pre>
 </li>
 <li><p>Import modules:</p>
 
-<pre><code>#export
-from nbdev import *
-from nbdev.showdoc import *</code></pre>
+<pre><code>#hide
+#not deps but we need them to use nbdev and run tests
+from nbdev import * 
+from nbdev.showdoc import *
+from fastcore.test import *</code></pre>
 </li>
 <li><p>Add a text cell with the following code and replace the placeholder text with the name/title for your notebook that you want to appear in the documentation. The '&gt;' creates an indented paragraph.</p>
 
