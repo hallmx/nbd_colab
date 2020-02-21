@@ -6,16 +6,15 @@ index = {"drive_setup": "00_core.ipynb",
          "clone_new_repo": "00_core.ipynb",
          "change_dir": "00_core.ipynb",
          "home_dir": "00_core.ipynb",
-         "pd.options.display.max_columns": "03_dstemplate.ipynb",
-         "pd.options.display.max_rows": "03_dstemplate.ipynb",
-         "plotly.offline.init_notebook_mode(connected": "03_dstemplate.ipynb",
-         "cf.go_offline(connected": "03_dstemplate.ipynb",
-         "cf.set_config_file(theme": "03_dstemplate.ipynb",
-         "PARAM": "03_dstemplate.ipynb"}
+         "versions": "04_gpu.ipynb",
+         "show_ram_usage": "04_gpu.ipynb",
+         "purge_mem": "04_gpu.ipynb",
+         "show_df_mem_usage": "04_gpu.ipynb",
+         "reduce_df_mem_usage": "04_gpu.ipynb"}
 
 modules = ["core.py",
            "troubleshooting.py",
-           "dstemplate.py"]
+           "gpu.py"]
 
 doc_url = "https://hallmx.github.io/nbd_colab/"
 
