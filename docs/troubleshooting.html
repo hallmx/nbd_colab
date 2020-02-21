@@ -1,11 +1,11 @@
 ---
 
-title: Troubleshooting
+title: Title
 
 keywords: fastai
 sidebar: home_sidebar
 
-summary: "There are a number of quircks and gotchas to be aware of when working with nbdev from within Colaboratory. When you encounter a problem check the following. Many of them may seem obvious but can still trip you up and waste time - they have me!"
+summary: "summary"
 ---
 <!--
 
@@ -28,82 +28,127 @@ summary: "There are a number of quircks and gotchas to be aware of when working 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="1.-Make-sure-you-are-in-the-project-directory.">1. Make sure you are in the project directory.<a class="anchor-link" href="#1.-Make-sure-you-are-in-the-project-directory.">&#182;</a></h3><blockquote><p>Library and module imports as well as nbdev commands only work from within the project directory. Make sure you %cd 
+<h1 id="Troubleshooting">Troubleshooting<a class="anchor-link" href="#Troubleshooting">&#182;</a></h1><p>There are a number of quircks and gotchas to be aware of when working with nbdev from within Colaboratory. When you encounter a problem check the following. Many of them may seem obvious but can still trip you up and waste time - they have me!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="1.-Make-sure-you-are-in-the-project-directory.">1. Make sure you are in the project directory.<a class="anchor-link" href="#1.-Make-sure-you-are-in-the-project-directory.">&#182;</a></h3><ul>
+<li><p>Library and module imports as well as nbdev commands only work from within the project directory. Make sure you %cd 
 into the project directory before you start working. Place a <code>%cd path_to_project_directory</code> command in a early notebook cell after installs but before any imports.</p>
-<p>System errors can reset notebooks and return the current working directory to home (i.e. /content). Thus, following a system error, particularly in the project management notebook if you use one, always check that you are still in the project directory before continuing to work (<code>!pwd</code>).</p>
-<p>Oh, and use <code>%cd</code> not <code>!cd</code> from within notebooks to change directory!</p>
-</blockquote>
+</li>
+<li><p>System errors can reset notebooks and return the current working directory to home (i.e. /content). Thus, following a system error, particularly in the project management notebook if you use one, always check that you are still in the project directory before continuing to work (<code>!pwd</code>).</p>
+</li>
+<li><p>Oh, and make sure to use <code>%cd</code> not <code>!cd</code> from within notebooks to change directory!</p>
+</li>
+</ul>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="2.-Local-imports-not-working.">2. Local imports not working.<a class="anchor-link" href="#2.-Local-imports-not-working.">&#182;</a></h3><blockquote><p>Managing local imports between Colab and Google Drive can be a little frustrating but a systematic approach saves the day.</p>
-<p>For a new import, or a change to the code of an existing import, to become available in the importing notebook the following are required: &gt;&gt;first, the project must be rebuilt with <code>nbdev_build_lib</code>. This creates the a new or updated .py file containing the actual code to be imported.</p>
-<blockquote><p>second, Colab may not realise an updated import has changed and so doesn't import the the new .py file when the !import statement is rerun. If this occurs, try restarting the runtime ('restart runtime...' in the notebook's runtime menu) and/or reloading the page. If this doesn't work - and more often than not it doesn't - do a 'factory reset runtime'. This resets all variables and forces all imports to be reloaded from source. Factory resets are a pain (you have to re-mount Google Drive and reinstall any external libraries) but I've found it's possible to plan project development so as to minimise changes to imported code and reduce time wasted in this way.</p>
-</blockquote>
-<p>If the import is still not working, check the source notebook's corresponding .py file. Is the new code there? Did you <code>#export</code> it from the source notebook?. If so, repeat the build then factory reset the destination notebook BEFORE trying to import it again.</p>
-</blockquote>
+<h3 id="2.-Local-imports-not-working.">2. Local imports not working.<a class="anchor-link" href="#2.-Local-imports-not-working.">&#182;</a></h3><ul>
+<li><p>Managing local imports between Colab and Google Drive can be a little frustrating but a systematic approach saves the 
+day.</p>
+</li>
+<li><p>For a new import, or a change to the code of an existing import, to become available in the importing notebook the following are required:</p>
+<ul>
+<li><p>first, the project must be rebuilt with <code>nbdev_build_lib</code>. This creates the a new or updated .py file containing the actual code to be imported.</p>
+</li>
+<li><p>second, Colab may not realise an updated import has changed and so doesn't import the the new .py file when the !import statement is rerun. If this occurs, try restarting the runtime ('restart runtime...' in the notebook's runtime menu) and/or reloading the page. If this doesn't work - and more often than not it doesn't - do a 'factory reset runtime'. This resets all variables and forces all imports to be reloaded from source. Factory resets are a pain (you have to re-mount Google Drive and reinstall any external libraries) but I've found it's possible to plan project development so as to minimise changes to imported code and reduce time wasted in this way.</p>
+</li>
+</ul>
+</li>
+<li><p>If the import is still not working, check the source notebook's corresponding .py file. Is the new code there? Did you <code>#export</code> it from the source notebook?. If so, repeat the build then factory reset the destination notebook BEFORE trying to import it again.</p>
+</li>
+</ul>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="3.-Show_doc(class.method)-doesn't-give-the-expected-notebook-cell-output.">3. Show_doc(class.method) doesn't give the expected notebook cell output.<a class="anchor-link" href="#3.-Show_doc(class.method)-doesn't-give-the-expected-notebook-cell-output.">&#182;</a></h3><blockquote><p>The nbdev <code>show_doc(class.method)</code> used to automatically generate documentation for class methods doesn't give the expected text output in Colab notebook cells, instead just a method definition. However, it works as expected when the documentation is actually built with <code>!nbdev_build_docs</code> so continue to use it as per the nbdev docs/tutorial (https: //nbdev.fast.ai/).</p>
-</blockquote>
+<h3 id="3.-Show_doc(class.method)-doesn't-give-the-expected-notebook-cell-output.">3. Show_doc(class.method) doesn't give the expected notebook cell output.<a class="anchor-link" href="#3.-Show_doc(class.method)-doesn't-give-the-expected-notebook-cell-output.">&#182;</a></h3><ul>
+<li>The nbdev <code>show_doc(class.method)</code> used to automatically generate documentation for class methods doesn't give the expected text output in Colab notebook cells, instead just a method definition. However, it works as expected when the documentation is actually built with <code>!nbdev_build_docs</code> so continue to use it as per the nbdev docs/tutorial (<a href="https://nbdev.fast.ai/">https://nbdev.fast.ai/</a>).</li>
+</ul>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="4.-nbdev_build_docs-fails-with-an-error-message">4. nbdev_build_docs fails with an error message<a class="anchor-link" href="#4.-nbdev_build_docs-fails-with-an-error-message">&#182;</a></h3><blockquote><p>Most often, it is a failed <code>!import</code> in one of the notebooks. Make sure the import is working in the notebook itself (see above if not) and if so rebuild the project. If the error persists and it is not obvious why, reset the runtime in the project management notebook (a factory reset may be required).</p>
-</blockquote>
+<h3 id="4.-nbdev_build_docs-fails-with-an-error-message">4. nbdev_build_docs fails with an error message<a class="anchor-link" href="#4.-nbdev_build_docs-fails-with-an-error-message">&#182;</a></h3><ul>
+<li>Most often, it is a failed <code>!import</code> in one of the notebooks. Make sure the import is working in the notebook itself (see above if not) and if so rebuild the project. If the error persists and it is not obvious why, reset the runtime in the project management notebook (a factory reset may be required).</li>
+</ul>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="4.-!nbdev_diff_nbs-generates-an-output.">4. !nbdev_diff_nbs generates an output.<a class="anchor-link" href="#4.-!nbdev_diff_nbs-generates-an-output.">&#182;</a></h3><blockquote><p>Code diffs between the notebooks and build files can cause problems with github integration. If nbdev_diff_nbs gives an output, therefore, you'll need to either run <code>notebook2script()</code> or <code>script2notebook()</code> from a notebook cell to fix the difference (see the nbdev docs at https: //nbdev.fast.ai/).</p>
-</blockquote>
+<h3 id="4.-!nbdev_diff_nbs-generates-an-output.">4. !nbdev_diff_nbs generates an output.<a class="anchor-link" href="#4.-!nbdev_diff_nbs-generates-an-output.">&#182;</a></h3><ul>
+<li>Code diffs between the notebooks and build files can cause problems with github integration. If nbdev_diff_nbs gives an output, therefore, you'll need to either run <code>notebook2script()</code> or <code>script2notebook()</code> from a notebook cell to fix the difference (see the nbdev docs at <a href="https://nbdev.fast.ai/">https://nbdev.fast.ai/</a>). </li>
+</ul>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="5.-!nbdev_test_nbs-fails.">5. !nbdev_test_nbs fails.<a class="anchor-link" href="#5.-!nbdev_test_nbs-fails.">&#182;</a></h3><p>Testing is great and <code>nbdev_test_nbs</code> is an incredibly easy way of implementing them in your notebooks and across a whole project. I add tests to just about anything in my notebooks that can be tested and this saves a lot of time and frustration, especially as projects grow in size. Tests can be an excellent way of showing users how to use your code and can be included in the docs. Those you don't want exposed to the user <code>#hide</code>.</p>
-<p>As well as simply reading the error message and debugging your code, it is worth considering the folowing when <code>nbdev_test_nbs</code> fails:</p>
-<blockquote><p>For <code>!nbdev_test_nbs</code> to give a clean bill of health, each notebook in the project (including index.ipynb) must run independently from top to bottom without stalling or raising an exception. It is worth doing this for all your notebooks before building and testing.</p>
-<p>If you can't find the cause of an exception from the error message, identify the failing notebook, do a factory reset then rerun it top to bottom including remounting Google Drive and installing libraries. This will usually identify the cause of the error and allow debugging. Once the culprit notebook is running top to bottom error free - rebuild the project library and docs and rerun <code>!nbdev_test_nbs</code>.</p>
-<p>Note that <code>drive.mount()</code> in an open unmounted notebook will cause the notebook to stall awaiting user imput and therefore tests to fail. Either save and close the notebook session or run the cell and mount Drive so that the code runs through without hitch next time.</p>
-<p><code>!nbdev_test_nbs</code> reruns the nbs on a colab CPU instance. Thus all device code (i.e. running Learner.fit() in fastai) will cause a <code>cuda runtime error (100)</code>. I havn't found a way round this yet so while ignoring it is fine, and doesn't intefere with git integration or pypi make release, it may mask errors further down in the notebook. So make sure you can run the notebook top to bottom on a CUDA enabled Colab instance when this error arises.</p>
-</blockquote>
+<h3 id="5.-!nbdev_test_nbs-fails.">5. !nbdev_test_nbs fails.<a class="anchor-link" href="#5.-!nbdev_test_nbs-fails.">&#182;</a></h3><ul>
+<li><p>Testing is great and <code>nbdev_test_nbs</code> is an incredibly easy way of implementing them in your notebooks and across a whole project. I add tests to just about anything in my notebooks that can be tested and this saves a lot of time and frustration, especially as projects grow in size. Tests can be an excellent way of showing users how to use your code and can be included in the docs. Those you don't want exposed to the user <code>#hide</code>.</p>
+</li>
+<li><p>As well as simply reading the error message and debugging your code, it is worth considering the folowing when <code>nbdev_test_nbs</code> fails:</p>
+</li>
+<li><p>For <code>!nbdev_test_nbs</code> to give a clean bill of health, each notebook in the project (including index.ipynb) must run independently from top to bottom without stalling or raising an exception. It is worth doing this for all your notebooks before building and testing.</p>
+</li>
+<li><p>If you can't find the cause of an exception from the error message, identify the failing notebook, do a factory reset then rerun it top to bottom including remounting Google Drive and installing libraries. This will usually identify the cause of the error and allow debugging. Once the culprit notebook is running top to bottom error free - rebuild the project library and docs and rerun <code>!nbdev_test_nbs</code>.</p>
+</li>
+<li><p>Note that <code>drive.mount()</code> in an open unmounted notebook will cause the notebook to stall awaiting user imput and therefore tests to fail. Either save and close the notebook session or run the cell and mount Drive so that the code runs through without hitch next time.</p>
+</li>
+<li><p><code>!nbdev_test_nbs</code> reruns the nbs on a colab CPU instance. Thus all device code (i.e. running Learner.fit() in fastai) will cause a <code>cuda runtime error (100)</code>. I havn't found a way round this yet so while ignoring it is fine, and doesn't intefere with git integration or pypi make release, it may mask errors further down in the notebook. So make sure you can run the notebook top to bottom on a CUDA enabled Colab instance when this error arises.</p>
+</li>
+</ul>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="6.-GitHub-integration-issues.">6. GitHub integration issues.<a class="anchor-link" href="#6.-GitHub-integration-issues.">&#182;</a></h3><blockquote><p>GitHUB integration works almost exactly the same as when used from a local machine command line. Just mmake sure you have activated !<code>nbdev_git_hooks</code> to strip notebooks of unwanted metadata and that the local repo is configured with your GitHub username and email: <code>! git config user.email "email"
-! git config user.name "username"</code>
-Not infrequently, however, allthough all the nbdev tests passed, git push fails with a little red cross. You can click on the red cross for more details. Common causes are: &gt;&gt; an unresolved diff. Go back and run <code>!nbdev git hooks</code> in the project directory and try again.&gt; &gt; the code to mount Google Drive, <code>from google.colab import Drive</code> will raise a 'ModuleNotFoundError: No module named 'google' exception when nbdev_test_nbs is run during github tests. I assume this is because git tests are run on a server without google.colab installed. No way round this for Colab users - comment out the offending code if you really want the green tick next to your repo on GithHub but otherwise, it doesn't make a difference to anything.</p>
-<blockquote><p>Investigate and debug other causes of failing tests during a GitHub push, but there shouldn't really be any if <code>!nbdev_test_nbs</code> was successfully run prior to pushing.</p>
-</blockquote>
-</blockquote>
+<h3 id="6.-GitHub-integration-issues.">6. GitHub integration issues.<a class="anchor-link" href="#6.-GitHub-integration-issues.">&#182;</a></h3><ul>
+<li><p>GitHUB integration works almost exactly the same as when used from a local machine command line. Just mmake sure you have activated !<code>nbdev_git_hooks</code> to strip notebooks of unwanted metadata and that the local repo is configured with your GitHub username and email:</p>
+
+<pre><code>! git config user.email "email"
+! git config user.name "username"</code></pre>
+</li>
+<li><p>Not infrequently, however, allthough all the nbdev tests passed, git push fails with a little red cross. You can click on the red cross for more details. Common causes are:</p>
+<ul>
+<li><p>an unresolved diff. Go back and run <code>!nbdev git hooks</code> in the project directory and try again.</p>
+</li>
+<li><p>the code to mount Google Drive, <code>from google.colab import Drive</code> will raise a 'ModuleNotFoundError: No module named 'google' exception when nbdev_test_nbs is run during github tests. I assume this is because git tests are run on a server without google.colab installed. No way round this for Colab users - comment out the offending code if you really want the green tick next to your repo on GithHub but otherwise, it doesn't make a difference to anything.</p>
+</li>
+</ul>
+</li>
+<li><p>Investigate and debug other causes of failing tests during a GitHub push, but there shouldn't really be any if <code>!nbdev_test_nbs</code> was successfully run prior to pushing.</p>
+</li>
+</ul>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="7.-Documentation-on-GitHub-Pages">7. Documentation on GitHub Pages<a class="anchor-link" href="#7.-Documentation-on-GitHub-Pages">&#182;</a></h3><blockquote><p>Github pages only shows the index.ipynb page without any other notebook documentation. Make sure you have checked the 'master branch/docs folder' option of 'GitHub Pages' (in the repo settings). The 'docs' folder is ignored if the 'master branch' only option is selected</p>
-<p>A notebook doesn't appear in the docs sidebar menu. The menu is built from the first <code>#</code> markdown cell of each notebook, where the <code>#</code> must be followed by a unique notebook name e.g <code># Core</code>. Include this before any other markdown cells and the notebook will appear in the menu under this name.</p>
-<p>Otherwise, if the docs don't look as expected on GitHub Pages, revise the nbdev syntax for auto-generating documentaion from notebook cells and review your code.</p>
-</blockquote>
+<h3 id="7.-Documentation-on-GitHub-Pages">7. Documentation on GitHub Pages<a class="anchor-link" href="#7.-Documentation-on-GitHub-Pages">&#182;</a></h3><ul>
+<li><p>Github pages only shows the index.ipynb page without any other notebook documentation. Make sure you have checked the 'master branch/docs folder' option of 'GitHub Pages' (in the repo settings). The 'docs' folder is ignored if the 'master branch' only option is selected</p>
+</li>
+<li><p>A notebook doesn't appear in the docs sidebar menu. The menu is built from the first <code>#</code> markdown cell of each notebook, where the <code>#</code> must be followed by a unique notebook name e.g <code># Core</code>. Include this before any other markdown cells and the notebook will appear in the menu under this name.</p>
+</li>
+<li><p>Otherwise, if the docs don't look as expected on GitHub Pages, revise the nbdev syntax for auto-generating documentaion from notebook cells and review your code.</p>
+</li>
+</ul>
 
 </div>
 </div>
