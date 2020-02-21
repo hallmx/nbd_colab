@@ -1,11 +1,11 @@
 ---
 
-title: Adding a new notebook/module
+title: Adding a new notebook
 
 keywords: fastai
 sidebar: home_sidebar
 
-summary: "A quick guide to adding a new Colaboratory notebook/module to your project repository and configuring it for use with nbdev. Note, nbdev_colab is not needed for creating a new notebook/module. "
+summary: "A quick guide to adding a new Colaboratory notebook to your project repo and configuring it for use with nbdev."
 ---
 <!--
 
@@ -18,8 +18,22 @@ summary: "A quick guide to adding a new Colaboratory notebook/module to your pro
 -->
 
 <div class="container" id="notebook-container">
-    
+    {% raw %}
+        
 <div class="cell border-box-sizing code_cell rendered">
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">cd</span> /content/drive/My Drive/nbd_colab
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
@@ -27,65 +41,61 @@ summary: "A quick guide to adding a new Colaboratory notebook/module to your pro
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Add-a-new-Colab-notebook/module.">Add a new Colab notebook/module.<a class="anchor-link" href="#Add-a-new-Colab-notebook/module.">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Follow the steps below to add a new Colab notebook/module to your project repository on Google Drive.</p>
-<p>Create a new python 3 notebook in Gooogle Colaboratory (Colab) and name it according to the nbdev convention of incremental numbering (00, 01, 02 etc) followed by an underscore and a name describing its contents. For example, if this is the third notebook added to the project, and it contains networking functionality, an appropriate name might be '03_network.ipynb'.</p>
-<p>Note that Colab may not create the notebook directly in the project repository on Google Drive. If not, locate it at the default location where new notebooks are created (commonly the 'Colab Notebooks' folder in '/My Drive'), then right click the notebook and select 'move'. Use the pop up box to move it to the desired location in the cloned project directory.</p>
-<p>Then add and run the following code snippets in separate cells in order to set up the notebook for nbdev integration.</p>
+<p>Create a new python 3 notebook in Gooogle Colaboratory (Colab) and name it according to the nbdev convention of incremental numbering (00, 01, 02 etc) followed by an underscore and a name describing its contents. For example, if this is the third notebook added to the project, and it contains tests, an appropriate name might be '03_tests.ipynb'. Note that the new notebook may not be created directly in the project repository on Google Drive. If not, locate it on your Google Drive (commonly the 'Colab Notebooks' folder in '/My Drive'), and move it to the project repo by right clicking and selecting 'move'.</p>
+<p>Then add and run the following code snippets in separate cells.</p>
 <ol>
-<li><p>In the first cell add:</p>
-<p><code># default_exp &lt;module&gt;</code></p>
+<li><p>In the first cell add the following code where <code>&lt;module&gt;</code> is the name of the .py file that the notebook will create. In the case of the 03_tests.ipynb notebook, the module name should be 'tests'. Submodules can be specified with <code>&lt;module.submodule</code>.</p>
+
+<pre><code># default_exp &lt;module&gt;</code></pre>
 </li>
-</ol>
-<p>Where <module> is the name of the .py file that the notebook will create. In the case of the 03_network.ipynb notebook, the module name should be 'network'. Submodules can be specified with &lt;module.submodule'.</p>
-<ol>
-<li><p>Add autoreload functionality to any changes in one notebook module are automatically updated in linked module notebooks:</p>
+<li><p>Then add the following code to connect your Colab instance to Google Drive. Alternatively, click on 'Mount Drive' in the Colab sidebar File tab and the above code is automatically inserted and run for you.</p>
 
 <pre><code>#hide
-%load_ext autoreload
-%autoreload 2</code></pre>
-</li>
-<li><p>Then code to connect your Colab instance to Google Drive:</p>
-
-<pre><code># hide
 from google.colab import drive
 drive.mount('/content/drive')</code></pre>
 </li>
 <li><p>Required installs. Fastcore is required for running tests from nbdev.</p>
 
-<pre><code># hide
+<pre><code>#hide
 !pip install nbdev
 !pip install fastcore</code></pre>
 </li>
-<li><p>Add a text cell with the following code and replace the placeholder text with the name/title for your module that you want to appear in the documentation.</p>
+<li><p>Add a code cell that changes directory to the project repo early in the notebook.</p>
 
-<pre><code># Module title</code></pre>
+<pre><code>#hide
+%cd /content/drive/My drive/&lt;repo&gt;</code></pre>
 </li>
-<li><p>Add the following code to the same text cell as the module title. The '&gt;' creates a indented and formatted text cell below the module title where you can add explanation/details of the module.</p>
+<li><p>Import modules:</p>
 
-<pre><code>&gt; Details.</code></pre>
-</li>
-<li><p>Import modules: <code>#export
+<pre><code>#export
 from nbdev import *
-from nbdev.showdoc import *</code></p>
+from nbdev.showdoc import *</code></pre>
 </li>
-<li><p>Add the in-notebook export cell. Running this cell exports modules directly from the notebook (without having to go to the command line). The nbdev docs suggest adding it as the final cell in the notebook.</p>
+<li><p>Add a text cell with the following code and replace the placeholder text with the name/title for your notebook that you want to appear in the documentation. The '&gt;' creates an indented paragraph.</p>
+
+<pre><code># Notebook title
+&gt; Add an explanation/details of the module here.</code></pre>
+</li>
+<li><p>Optionally add the in-notebook export cell. Running this cell exports modules directly from the notebook (without having to go to the command line). The nbdev docs suggest adding it as the final cell in the notebook.</p>
 
 <pre><code>#hide
 from nbdev.export import notebook2script
 notebook2script()</code></pre>
 </li>
 </ol>
-<p>Finally, cd into the root directory of your project repository <code>repo</code> on Google Drive <code>cd /content/drive/My drive/repo</code> and you're ready to go. See the nbdev tutorial and documentation on customizing the above steps and code for a module's particular needs <a href="http://nbdev.fast.ai/index.html">http://nbdev.fast.ai/index.html</a>.</p>
+<p>Your ready to go. See the nbdev tutorial and documentation on customizing the above steps if needed http: //nbdev.fast.ai/index.html.</p>
 
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If you dont' want to type all the above each time, create a template notebook, empty apart from the code above, and save it somewhere on your Google Drive. Then copy, rename, move and customize it when a new notebook is needed for a project.</p>
+
+</div>
+</div>
+</div>
+    {% endraw %}
 </div>
  
 

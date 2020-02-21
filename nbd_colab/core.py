@@ -23,14 +23,14 @@ class _StopExecution(Exception):
 
 # Cell
 def _check_input(type, input):
-  "Utility function to check the users input and exit cell if invalid"
+  "Utility function to check user input and raises a _stopExecution exception (which terminates cell code execution) if invalid"
   if input == "":
     print(f'Error: {type} required ')
     raise _StopExecution
   else: return input
 
 def _get_dest_dir():
-  "Allows the user to input the destination folder for the cloned repo and checks it exists"
+  "Prompts the user to input the destination folder for the cloned repo and checks it exists"
 
   # set home directory
   home_dir = "/content/drive/My Drive"
@@ -45,7 +45,7 @@ def _get_dest_dir():
     raise _StopExecution
 
 def _get_repo(dir):
-  "Allows the user to enter the repo name and checks it doesn't already exist"
+  "prompts the user to enter the repo name and checks it doesn't already exist"
   repo = _check_input('repository name', input('Repo name: '))
   repo_path = dir+"/"+repo
   path_exists = os.path.exists(repo_path)
@@ -57,7 +57,7 @@ def _get_repo(dir):
 
 # Cell
 def clone_new_repo():
-  "Clone repo from github to google drive and configure"
+  "Clone nbdev template repo from github to google drive and configure"
 
   print('  Important Information:\n\
   nbd_dev does not store user details but users Github username and password are stored in the cloned\n\
@@ -91,10 +91,13 @@ def clone_new_repo():
       print('Error: Clone failed. Please review entries and try again. User details purged')
       raise _StopExecution
 
+    # cd into new repo
+    change_dir(dest_dir+"/"+repo)
+
     # save user email and username into local git repo to identify user for git commands
     try:
-      os.system('git config user.name user')
-      os.system('git config user.email user_email')
+      os.system('git config user.name {0}'.format(user))
+      os.system('git config user.email {0}'.format(user_email))
     except exception as e:
      print('Git configuration failed. Please manually configure the local repo with username and email')
      print(e)

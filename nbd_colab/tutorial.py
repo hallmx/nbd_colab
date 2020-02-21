@@ -4,4 +4,3 @@ __all__ = []
 
 # Cell
 from nbdev import *
-from nbdev.showdoc import *
