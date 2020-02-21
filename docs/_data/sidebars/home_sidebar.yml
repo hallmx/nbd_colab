@@ -16,7 +16,7 @@ entries:
       title: Adding a new notebook
       url: /tutorial
     - output: web,pdf
-      title: Title
+      title: Troubleshooting
       url: /troubleshooting
     output: web
     title: nbd_colab
