@@ -30,9 +30,9 @@ summary: "There are a number of quircks and gotchas to be aware of when working 
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="1.-Make-sure-you-are-in-the-project-directory.">1. Make sure you are in the project directory.<a class="anchor-link" href="#1.-Make-sure-you-are-in-the-project-directory.">&#182;</a></h3><ul>
 <li><p>Library and module imports as well as nbdev commands only work from within the project directory. Make sure you %cd 
-into the project directory before you start working. Place a <code>%cd path_to_project_directory</code> command in a early notebook cell after installs but before any imports.</p>
+into the project directory before you start working in a notebook. Place a <code>%cd path_to_project_directory</code> command in a early cell (after installs but before any imports) so as not to forget!</p>
 </li>
-<li><p>System errors can reset notebooks and return the current working directory to home (i.e. /content). Thus, following a system error, particularly in the project management notebook if you use one, always check that you are still in the project directory before continuing to work (<code>!pwd</code>).</p>
+<li><p>System errors can reset notebooks and return the current working directory to home (i.e. '/content'). Thus, following a system error, particularly in the project management notebook if you use one, always check that you are still in the project directory before continuing to work (<code>!pwd</code>).</p>
 </li>
 <li><p>Oh, and make sure to use <code>%cd</code> not <code>!cd</code> from within notebooks to change directory!</p>
 </li>
@@ -73,7 +73,7 @@ day.</p>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="4.-nbdev_build_docs-fails-with-an-error-message">4. <code>nbdev_build_docs</code> fails with an error message<a class="anchor-link" href="#4.-nbdev_build_docs-fails-with-an-error-message">&#182;</a></h3><ul>
+<h3 id="4.-nbdev_build_docs-fails-with-an-error-message.">4. <code>nbdev_build_docs</code> fails with an error message.<a class="anchor-link" href="#4.-nbdev_build_docs-fails-with-an-error-message.">&#182;</a></h3><ul>
 <li>Most often, it is a failed <code>!import</code> in one of the notebooks. Make sure the import is working in the notebook itself (see above if not) and if so rebuild the project. If the error persists and it is not obvious why, reset the runtime in the project management notebook (a factory reset may be required).</li>
 </ul>
 
@@ -134,7 +134,7 @@ day.</p>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="7.-Documentation-on-GitHub-Pages">7. Documentation on GitHub Pages<a class="anchor-link" href="#7.-Documentation-on-GitHub-Pages">&#182;</a></h3><ul>
+<h3 id="7.-Documentation-on-GitHub-Pages.">7. Documentation on GitHub Pages.<a class="anchor-link" href="#7.-Documentation-on-GitHub-Pages.">&#182;</a></h3><ul>
 <li><p>Github pages only shows the index.ipynb page without any other notebook documentation. Make sure you have checked the 'master branch/docs folder' option of 'GitHub Pages' (in the repo settings). The 'docs' folder is ignored if the 'master branch' only option is selected</p>
 </li>
 <li><p>A notebook doesn't appear in the docs sidebar menu. The menu is built from the first <code>#</code> markdown cell of each notebook, where the <code>#</code> must be followed by a unique notebook name e.g <code># Core</code>. Include this before any other markdown cells and the notebook will appear in the menu under this name.</p>

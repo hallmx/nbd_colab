@@ -18,6 +18,9 @@ entries:
     - output: web,pdf
       title: Troubleshooting
       url: /troubleshooting
+    - output: web,pdf
+      title: Data Science NB Template
+      url: /dstemplate
     output: web
     title: nbd_colab
   output: web

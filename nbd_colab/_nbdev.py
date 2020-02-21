@@ -9,7 +9,8 @@ index = {"drive_setup": "00_core.ipynb",
 
 modules = ["core.py",
            "tutorial.py",
-           "troubleshooting.py"]
+           "troubleshooting.py",
+           "dstemplate.py"]
 
 doc_url = "https://hallmx.github.io/nbd_colab/"
 
