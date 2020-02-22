@@ -10,11 +10,13 @@ index = {"drive_setup": "00_core.ipynb",
          "show_ram_usage": "04_gpu.ipynb",
          "purge_mem": "04_gpu.ipynb",
          "show_df_mem_usage": "04_gpu.ipynb",
-         "reduce_df_mem_usage": "04_gpu.ipynb"}
+         "reduce_df_mem_usage": "04_gpu.ipynb",
+         "supress_warnings": "05_utils.ipynb"}
 
 modules = ["core.py",
            "troubleshooting.py",
-           "gpu.py"]
+           "gpu.py",
+           "utils.py"]
 
 doc_url = "https://hallmx.github.io/nbd_colab/"
 
