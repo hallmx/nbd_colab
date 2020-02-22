@@ -41,7 +41,7 @@ summary: "nbd_colab is a thin wrapper around the nbdev library to facilitate the
 <h2 id="Overview">Overview<a class="anchor-link" href="#Overview">&#182;</a></h2><p>Nbdev is a system for exploratory programming using Jupyter notebooks developed by Jeremy Howard and Sylvain Gugger of fastai fame. It is aimed at helping python developers and software engineers practice literate programming.</p>
 <p>Ideally nbdev is used from within a virtual environment on a local machine with hardware acceleration. However, many deep learning practitioners and students use Google Colaboratory (Colab) to develop and run their GPU accelerated code, taking advantage of Colab's integration with Google Drive and it's free GPUs and TPUs.</p>
 <p>While nbdev works fine with Colab's Jupyter notebook environment and code editor, a few considerations and customizations are required for the nbdev programming system as a whole to play nicely with Colab and Drive. This module describes an approach to using nbdev with Google Colab and Google Drive, provides some useful tools for setting up a new nbdev GitHub project repository on Google Drive and adds some nbdev-colab specific documentation including troubleshooting advice.</p>
-<p>Use of this module assumes the user is familiar with nbdev programming system, github, Google Colaboratory and Google Drive. Full nbdev documentation and excellent tutorial is at <a href="https://nbdev.fast.ai/">https://nbdev.fast.ai/</a>.</p>
+<p>Use of this module assumes the user is familiar with nbdev programming system, github, Google Colaboratory and Google Drive. To get to know nbdev try the <a href="https://nbdev.fast.ai/">nbdev docs</a> and/or excellent <a href="https://nbdev.fast.ai/tutorial/">get started tutorial</a>.</p>
 
 </div>
 </div>
@@ -123,7 +123,7 @@ drive.mount('/content/drive')</code></pre>
 <pre><code>! cat settings.ini</code></pre>
 </li>
 </ol>
-<p>From here follow the instructions in the nbdev docs/tutorial (https: //nbdev.fast.ai/tutorial/) to make an initial build of the project library and documentation (i.e. run !nbdev_bulld_lib then !nb_build_docs from the project management notebook).</p>
+<p>From here follow the instructions in the <a href="https: //nbdev.fast.ai/">nbdev docs</a> and <a href="https://nbdev.fast.ai/tutorial/">setup tutorial</a> to make an initial build of the project library and documentation (i.e. run !nbdev_bulld_lib then !nb_build_docs from the project management notebook).</p>
 
 </div>
 </div>
@@ -158,14 +158,75 @@ drive.mount('/content/drive')</code></pre>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Adding a new Colab notebook to your project repository and configuring it to work with nbdev is described on the tutorial page in the nbd_colab documentation.</p>
+<p>See the tutorial page of the nbd_colab documentation.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Brief-tour-of-nbdev-project-management">Brief tour of nbdev project management<a class="anchor-link" href="#Brief-tour-of-nbdev-project-management">&#182;</a></h2>
+<h2 id="Working-with-nbdev-and-Colab-notebooks">Working with nbdev and Colab notebooks<a class="anchor-link" href="#Working-with-nbdev-and-Colab-notebooks">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Automatic-documentation-syntax-(nbdev):">Automatic documentation syntax (nbdev):<a class="anchor-link" href="#Automatic-documentation-syntax-(nbdev):">&#182;</a></h3><ul>
+<li><p>#export - include cell content and cell output in module <code>.py</code> files and docs.</p>
+</li>
+<li><p>#exports - include cell content, cell output and source code in module and docs</p>
+</li>
+<li><p>#hide - do not include cell in module or docs</p>
+</li>
+<li><p>none - include in documenttaion only</p>
+</li>
+<li><p>_ (underscore) before a function or class will include it in the module but hide it from the docs</p>
+</li>
+<li><p>A thick blue line is added above the documentation for a class. To include a thick blue line divider elsewhere, start a text cell with ## (two hashes).</p>
+</li>
+<li><p>Functions and classes are the only code that is included in the documentation when #export or #exports are used. Other code can be included just. So <code>#exports; !import xyzlib</code> will cause the import statement to be included in the module <code>.py</code> file (where it need to be) but will not be visible in the docs.</p>
+</li>
+<li><p>Tests are best placed in a separate cell without any <code>#</code>statements. They will run with the notebook and <code>!nbdev_test_nbs</code>, be included in the documentation but excluded from the module <code>.py</code> files. <code>#hide</code> cells with tests you don't want including in the docs.</p>
+</li>
+<li><p>The "Docstring" of classes and functions is automatically formatted as the class or function description in the documentation</p>
+</li>
+<li><p>Class methods are not automatically included in the documentation. Include those you want manually using <code>#show_doc(class.method)</code> in a cell after the cell containing the class or function. The method "Docstring" becomes the method description in the docs.</p>
+</li>
+</ul>
+<p>See the nbdev <a href="https://nbdev.fast.ai/">documentation</a> for the full guide:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Markdown-references.">Markdown references.<a class="anchor-link" href="#Markdown-references.">&#182;</a></h3><ul>
+<li><p><a href="https://colab.research.google.com/notebooks/markdown_guide.ipynb#scrollTo=70pYkR9LiOV0">Colab markdown guide</a></p>
+</li>
+<li><p><a href="https://help.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax">GitHub markdown</a></p>
+</li>
+<li><p><a href="https://en.wikibooks.org/wiki/LaTeX/Mathematics">Guide to Latex</a></p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Dependencies-and-imports">Dependencies and imports<a class="anchor-link" href="#Dependencies-and-imports">&#182;</a></h2><ul>
+<li><p>Use the requirements setting in settings.ini to install any dependencies along with your project. Multiple library names should be separated by a space only, e.g. <code>requirements = fastcore nbdev xyz_lib</code>. Note that <code>!</code> generates an error when building the docs so put code such as <code>!install xyz</code> in a text cell or #hide it.</p>
+</li>
+<li><p>Edit init.py with the name of modules to import with <em>. For example, add from .core import </em> to init.py to allow core to be imported with just from nbdev import *</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Building,-pushing-and-releasing-your-project">Building, pushing and releasing your project<a class="anchor-link" href="#Building,-pushing-and-releasing-your-project">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -173,13 +234,28 @@ drive.mount('/content/drive')</code></pre>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In the project management notebook, change directory to the root directory of the project repository on Google Drive <code>change_dir('path_to_repo')</code> or <code>%cd path_to_repo</code>. From here, all nbdev and Github commands should work as expected on the project:</p>
 <ul>
-<li><p>Build the library, build the docs and run tests with <code>!nbdev_build_lib</code>, <code>!nbdev_build_docs</code>, and <code>nbdev_test_nbs</code>. See the nbdev docs and tutorial for all available commands.</p>
+<li><p>Build the library (.py modules), build the docs (.html files) and run tests with <code>!nbdev_build_lib</code>, <code>!nbdev_build_docs</code>, and <code>!nbdev_test_nbs</code> respectively (and in that order). See the <a href="https://nbdev.fast.ai/">nbdev docs</a> and tutorial for all available commands .</p>
 </li>
 <li><p>Push to github with  <code>!git.status</code>, <code>!git add -A</code>, <code>!git commit -am "message"</code>, and <code>!git push</code>. All other Github commands (prefixed by !) should also work normally.</p>
 </li>
-<li><p>Publish to PyPi by following the instructions in the nbdev tutorial <a href="https://nbdev.fast.ai/tutorial/">https://nbdev.fast.ai/tutorial/</a>. Creating a _pypirc file in the user's home directory must be done manually with a text editor but <code>!pip install twine</code> and <code>!make release</code> work normally from Colab notebooks with nbdev installed.</p>
+<li><p>Publish to <a href="https://pypi.org/">PyPi</a> by following the instructions in the <a href="https://nbdev.fast.ai/tutorial/">nbdev tutorial</a>. Creating a _pypirc file in the user's home directory must be done manually with a text editor but <code>!pip install twine</code> and <code>!make release</code> work normally from Colab notebooks with nbdev installed.</p>
 </li>
 </ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Docs">Docs<a class="anchor-link" href="#Docs">&#182;</a></h2><p>This project, it's github repo, and documentation were all built using <a href="https://github.com/fastai/nbdev">nbdev</a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Contributing">Contributing<a class="anchor-link" href="#Contributing">&#182;</a></h2><p>After you clone this repository, please run <code>nbdev_install_git_hooks</code> in your terminal. This sets up git hooks, which clean up the notebooks to remove the extraneous stuff stored in the notebooks (e.g. which cells you ran) which causes unnecessary merge conflicts.</p>
+<p>Before submitting a PR, check that the local library and notebooks match. The script <code>nbdev_diff_nbs</code> can let you know if there is a difference between the local library and the notebooks.</p>
 
 </div>
 </div>

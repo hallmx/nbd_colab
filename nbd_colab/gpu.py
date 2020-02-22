@@ -11,7 +11,7 @@ def versions():
     print("Cuda version - ", torch.version.cuda)
     print("cuDNN version - ", torch.backends.cudnn.version())
     print("PyTorch version - ", torch.__version__)
-    print("fastai.__version__")
+    print("fastai version", fastai.__version__)
 
 # Cell
 def show_ram_usage():

@@ -14,7 +14,7 @@ Ideally nbdev is used from within a virtual environment on a local machine with 
 
 While nbdev works fine with Colab's Jupyter notebook environment and code editor, a few considerations and customizations are required for the nbdev programming system as a whole to play nicely with Colab and Drive. This module describes an approach to using nbdev with Google Colab and Google Drive, provides some useful tools for setting up a new nbdev GitHub project repository on Google Drive and adds some nbdev-colab specific documentation including troubleshooting advice. 
 
-Use of this module assumes the user is familiar with nbdev programming system, github, Google Colaboratory and Google Drive. Full nbdev documentation and excellent tutorial is at https://nbdev.fast.ai/.
+Use of this module assumes the user is familiar with nbdev programming system, github, Google Colaboratory and Google Drive. To get to know nbdev try the [nbdev docs](https://nbdev.fast.ai/) and/or excellent [get started tutorial](https://nbdev.fast.ai/tutorial/).
 
 ## Approach to using nbdev with Colaboratory's Jupyter notebooks
 
@@ -76,7 +76,7 @@ Check cloning was successful by printing out the contents of the settings.ini fi
 ! cat settings.ini
 ```
 
-From here follow the instructions in the nbdev docs/tutorial (https: //nbdev.fast.ai/tutorial/) to make an initial build of the project library and documentation (i.e. run !nbdev_bulld_lib then !nb_build_docs from the project management notebook).
+From here follow the instructions in the [nbdev docs](https: //nbdev.fast.ai/) and [setup tutorial](https://nbdev.fast.ai/tutorial/) to make an initial build of the project library and documentation (i.e. run !nbdev_bulld_lib then !nb_build_docs from the project management notebook).
 
 ## Navigating your project
 
@@ -92,20 +92,70 @@ Change directory to ```path```
 
 ## Adding a new notebook/module to your project
 
-Adding a new Colab notebook to your project repository and configuring it to work with nbdev is described on the tutorial page in the nbd_colab documentation.
+See the tutorial page of the nbd_colab documentation.
 
-## Brief tour of nbdev project management
+## Working with nbdev and Colab notebooks
+
+### Automatic documentation syntax (nbdev):
+*   #export - include cell content and cell output in module `.py` files and docs. 
+
+*   #exports - include cell content, cell output and source code in module and docs
+
+*   #hide - do not include cell in module or docs
+
+*   none - include in documenttaion only
+
+*   _ (underscore) before a function or class will include it in the module but hide it from the docs
+
+*   A thick blue line is added above the documentation for a class. To include a thick blue line divider elsewhere, start a text cell with ## (two hashes).
+
+*   Functions and classes are the only code that is included in the documentation when #export or #exports are used. Other code can be included just. So `#exports; !import xyzlib` will cause the import statement to be included in the module `.py` file (where it need to be) but will not be visible in the docs.
+
+*   Tests are best placed in a separate cell without any `#`statements. They will run with the notebook and `!nbdev_test_nbs`, be included in the documentation but excluded from the module `.py` files. `#hide` cells with tests you don't want including in the docs. 
+
+*   The "Docstring" of classes and functions is automatically formatted as the class or function description in the documentation 
+
+*   Class methods are not automatically included in the documentation. Include those you want manually using `#show_doc(class.method)` in a cell after the cell containing the class or function. The method "Docstring" becomes the method description in the docs. 
+
+
+See the nbdev [documentation](https://nbdev.fast.ai/) for the full guide: 
+
+### Markdown references. 
+
+* [Colab markdown guide](https://colab.research.google.com/notebooks/markdown_guide.ipynb#scrollTo=70pYkR9LiOV0)
+
+* [GitHub markdown](https://help.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax)
+
+* [Guide to Latex](https://en.wikibooks.org/wiki/LaTeX/Mathematics)
+
+## Dependencies and imports
+
+* Use the requirements setting in settings.ini to install any dependencies along with your project. Multiple library names should be separated by a space only, e.g. `requirements = fastcore nbdev xyz_lib`. Note that `!` generates an error when building the docs so put code such as `!install xyz` in a text cell or #hide it.
+
+* Edit init.py with the name of modules to import with *. For example, add from .core import * to init.py to allow core to be imported with just from nbdev import *
+
+## Building, pushing and releasing your project
 
 In the project management notebook, change directory to the root directory of the project repository on Google Drive ```change_dir('path_to_repo')``` or ```%cd path_to_repo```. From here, all nbdev and Github commands should work as expected on the project:
 
-*    Build the library, build the docs and run tests with ```!nbdev_build_lib```, ```!nbdev_build_docs```, and ```nbdev_test_nbs```. See the nbdev docs and tutorial for all available commands. 
+*    Build the library (.py modules), build the docs (.html files) and run tests with ```!nbdev_build_lib```, ```!nbdev_build_docs```, and ```!nbdev_test_nbs``` respectively (and in that order). See the [nbdev docs](https://nbdev.fast.ai/) and tutorial for all available commands . 
 
 *    Push to github with  ```!git.status```, ```!git add -A```, ```!git commit -am "message"```, and ```!git push```. All other Github commands (prefixed by !) should also work normally.
 
-*    Publish to PyPi by following the instructions in the nbdev tutorial https://nbdev.fast.ai/tutorial/. Creating a _pypirc file in the user's home directory must be done manually with a text editor but ```!pip install twine``` and ```!make release``` work normally from Colab notebooks with nbdev installed. 
+*    Publish to [PyPi](https://pypi.org/) by following the instructions in the [nbdev tutorial](https://nbdev.fast.ai/tutorial/). Creating a _pypirc file in the user's home directory must be done manually with a text editor but ```!pip install twine``` and ```!make release``` work normally from Colab notebooks with nbdev installed. 
 
 
 
+
+## Docs
+
+This project, it's github repo, and documentation were all built using [nbdev](https://github.com/fastai/nbdev).
+
+## Contributing
+
+After you clone this repository, please run `nbdev_install_git_hooks` in your terminal. This sets up git hooks, which clean up the notebooks to remove the extraneous stuff stored in the notebooks (e.g. which cells you ran) which causes unnecessary merge conflicts.
+
+Before submitting a PR, check that the local library and notebooks match. The script `nbdev_diff_nbs` can let you know if there is a difference between the local library and the notebooks.
 
 ## Copyright
 
