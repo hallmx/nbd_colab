@@ -18,15 +18,6 @@ entries:
     - output: web,pdf
       title: Troubleshooting
       url: /troubleshooting
-    - output: web,pdf
-      title: Data Science NB Template
-      url: /dstemplate
-    - output: web,pdf
-      title: GPU and memory management.
-      url: /gpu
-    - output: web,pdf
-      title: Utilities.
-      url: /utils
     output: web
     title: nbd_colab
   output: web

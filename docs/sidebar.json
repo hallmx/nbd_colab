@@ -3,9 +3,6 @@
     "Overview": "/",
     "Project setup with nbd_colab": "/core",
     "Add a new notebook": "/tutorial",
-    "Troubleshooting": "/troubleshooting",
-    "Data Science NB Template": "/dstemplate",
-    "GPU and memory management.": "/gpu",
-    "Utilities.": "/utils"
+    "Troubleshooting": "/troubleshooting"
   }
 }

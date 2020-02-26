@@ -3,6 +3,7 @@
 __all__ = ['drive_setup', 'clone_new_repo', 'change_dir', 'home_dir']
 
 # Cell
+#test_flag_imports
 import os
 from google.colab import drive
 from nbdev import *

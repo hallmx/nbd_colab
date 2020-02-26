@@ -5,17 +5,9 @@ __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 index = {"drive_setup": "00_core.ipynb",
          "clone_new_repo": "00_core.ipynb",
          "change_dir": "00_core.ipynb",
-         "home_dir": "00_core.ipynb",
-         "versions": "04_gpu.ipynb",
-         "show_ram_usage": "04_gpu.ipynb",
-         "purge_mem": "04_gpu.ipynb",
-         "show_df_mem_usage": "04_gpu.ipynb",
-         "reduce_df_mem_usage": "04_gpu.ipynb",
-         "supress_warnings": "05_utils.ipynb"}
+         "home_dir": "00_core.ipynb"}
 
-modules = ["core.py",
-           "gpu.py",
-           "utils.py"]
+modules = ["core.py"]
 
 doc_url = "https://hallmx.github.io/nbd_colab/"
 
