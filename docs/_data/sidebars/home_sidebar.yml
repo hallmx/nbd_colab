@@ -19,10 +19,10 @@ entries:
       title: Troubleshooting
       url: /troubleshooting
     - output: web,pdf
-      title: nbtemplate
+      title: Notebook template
       url: /nbtemplate
     - output: web,pdf
-      title: Example command line notebook
+      title: Command line template
       url: /cltemplate
     output: web
     title: nbd_colab

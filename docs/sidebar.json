@@ -4,7 +4,7 @@
     "Core": "/core",
     "Notebooks": "/tutorial",
     "Troubleshooting": "/troubleshooting",
-    "nbtemplate": "/nbtemplate",
-    "Example command line notebook": "/cltemplate"
+    "Notebook template": "/nbtemplate",
+    "Command line template": "/cltemplate"
   }
 }
