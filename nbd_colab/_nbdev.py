@@ -14,7 +14,6 @@ index = {"drive_setup": "00_core.ipynb",
          "supress_warnings": "05_utils.ipynb"}
 
 modules = ["core.py",
-           "troubleshooting.py",
            "gpu.py",
            "utils.py"]
 

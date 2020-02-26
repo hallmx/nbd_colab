@@ -24,6 +24,12 @@ class _StopExecution(Exception):
         pass
 
 # Cell
+def _run_subprocess(cmd):
+  "Run a subprocess and return success (0) or error (!0)"
+  process = Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+  return process.returncode
+
+# Cell
 def _check_input(type, input):
   "Utility function to check user input and raises a _stopExecution exception if invalid"
   if input == "":
@@ -118,7 +124,6 @@ def clone_new_repo():
     raise _StopExecution
 
   return None
-
 
 # Cell
 def change_dir(path):
