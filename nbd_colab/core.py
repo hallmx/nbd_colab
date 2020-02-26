@@ -10,6 +10,7 @@ from nbdev.showdoc import *
 from pathlib import Path
 from getpass import getpass
 import urllib
+from subprocess import Popen, PIPE
 
 # Cell
 def drive_setup():
@@ -18,12 +19,13 @@ def drive_setup():
 
 # Cell
 class _StopExecution(Exception):
+    "Gracefully stop cell execution"
     def _render_traceback_(self):
         pass
 
 # Cell
 def _check_input(type, input):
-  "Utility function to check user input and raises a _stopExecution exception (which terminates cell code execution) if invalid"
+  "Utility function to check user input and raises a _stopExecution exception if invalid"
   if input == "":
     print(f'Error: {type} required ')
     raise _StopExecution
@@ -75,45 +77,47 @@ def clone_new_repo():
 
   confirm = input('Confirm and clone y/n?')
   if confirm == 'y':
+    #cd to destination target directory
     change_dir(dest_dir)
-    cmd_string = 'git clone https://{0}:{1}@github.com/{0}/{2}.git'.format(user, password, repo)
-    try:
-      os.system(cmd_string)
-    except:
-      print('Error: Clone failed. Please review entries and try again. User details purged')
-    finally:
-      # purge password containing variables
-      cmd_string, password = None, None
 
-    if os.path.exists(dest_dir+"/"+repo):
-      print(f'{repo} successfully cloned into {dest_dir}')
-    else:
-      print('Error: Clone failed. Please review entries and try again. User details purged')
-      raise _StopExecution
+    # clone the repo
+    cmd_string = f'git clone https://{user}:{password}@github.com/{user}/{repo}.git'
+    ret = _run_subprocess(cmd_string)
+    # purge password containing variables straight away
+    cmd_string, password = None, None
+    #raise exception if error
+    assert ret, 'Error: Clone failed. Please review entries and try again. User details purged'
+
+    # check new repo exists and raise exception if not
+    repo_exists = os.path.exists(dest_dir+"/"+repo)
+    assert repo_exists, 'Error: Clone failed. Please review entries and try again. User details purged'
+
+    # if clone exists continue
+    print(f'{repo} successfully cloned into {dest_dir}')
 
     # cd into new repo
     change_dir(dest_dir+"/"+repo)
 
-    # save user email and username into local git repo to identify user for git commands
-    try:
-      os.system('git config user.name {0}'.format(user))
-      os.system('git config user.email {0}'.format(user_email))
-    except exception as e:
-     print('Git configuration failed. Please manually configure the local repo with username and email')
-     print(e)
+    # save user email and username into local git repo to identify user to git
+    ret = _run_subprocess(f'git config user.name {user}')
+    ret += -run_subprocess(f'git config user.email {user_email}')
+    if ret:
+     print(f'Git configuration failed. Please manually configure the local repo with username and email\n{e}')
 
-    # Install git hooks to clean up notebook metadata for smooth github integration
-    try:
-      os.system('nbdev_install_git_hooks')
-      print('nbdev git hooks successfully installed')
-    except exception as e:
-      print('Failed to install git hooks. Try manually installing with !nbdev_install_git_hooks')
-      print(e)
+    # install git hooks to automatically clean up notebook metadata
+    ret = _run_subprocess('nbdev_install_git_hooks')
+    if not ret:
+      msg = 'nbdev git hooks successfully installed'
+    else:
+      msg = f'Failed to install git hooks. Try manually installing with !nbdev_install_git_hooks\n{e}'
+    print(msg)
 
   else:
     cmd_string, password = None, None
     print('Clone cancelled\n')
     raise _StopExecution
+
+  return None
 
 
 # Cell

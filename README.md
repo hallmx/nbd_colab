@@ -1,5 +1,5 @@
 # Welcome to nbd_colab
-> nbd_colab is a thin wrapper around the nbdev library to facilitate the use of nbdev with Google Colab and Google Drive.  
+> Wrapper, resources and documentation around fastai nbdev to streamline literate programming  in Google Colaboratory.  
 
 
 ## Install
@@ -8,19 +8,14 @@
 
 ## Overview
 
-Nbdev is a system for exploratory programming using Jupyter notebooks developed by Jeremy Howard and Sylvain Gugger of fastai fame. It is aimed at helping python developers and software engineers practice literate programming. 
+Nbdev is a system for exploratory programming using Jupyter notebooks developed by Jeremy Howard and Sylvain Gugger of fastai aimed at helping python developers and software engineers practice literate programming. Many of these use Google Colaboratory (Colab) to develop and run GPU accelerated code, and while nbdev works perfectly well with Colab's Jupyter notebooks, there are few tricks and twists to creating a smooth workflow with nbdev, GitHub, Google Colab and Drive. 
 
-Ideally nbdev is used from within a virtual environment on a local machine with hardware acceleration. However, many deep learning practitioners and students use Google Colaboratory (Colab) to develop and run their GPU accelerated code, taking advantage of Colab's integration with Google Drive and it's free GPUs and TPUs.
-
-While nbdev works fine with Colab's Jupyter notebook environment and code editor, a few considerations and customizations are required for the nbdev programming system as a whole to play nicely with Colab and Drive. This module describes an approach to using nbdev with Google Colab and Google Drive, provides some useful tools for setting up a new nbdev GitHub project repository on Google Drive and adds some nbdev-colab specific documentation including troubleshooting advice. 
-
-Use of this module assumes the user is familiar with nbdev programming system, github, Google Colaboratory and Google Drive. To get to know nbdev try the [nbdev docs](https://nbdev.fast.ai/) and/or excellent [get started tutorial](https://nbdev.fast.ai/tutorial/).
+Here we describe an approach to using nbdev with Google Colab and Google Drive, provide some useful tools for GitHub integration and add some nbdev-colab specific documentation including troubleshooting and testing advice. Further information on nbdev itself can be found in the [nbdev docs](https://nbdev.fast.ai/) and/or the [get started tutorial](https://nbdev.fast.ai/tutorial/).
 
 ## Approach to using nbdev with Colaboratory's Jupyter notebooks
 
-Commonly, we write project code in a Jupyter notebook and manage the project from the command line. With Colab as our development environment, we don't have a command line as such, allthough we can, of course, make system calls from notebook cells using the os module and the ! or % prefixes.
-
-Thus, it is quite possible to manage an nbdev project entirely from within development notebooks, but having code for two different purposes - project code and command line code - in the same notebook quickly becomes cumbersome and confusing. An alternative approach is to set up a Colab notebook outside of the project directory to use exclusively for executing command line commands and scripts. By making the project directory the current working directory (%cd <path_to_project_directory>) of this separate notebook, any commands and scripts run in the separate notebook will execute in respect to the project directory and files. Such a 'project management notebook' as we will call it, separate from the project itself, is used for running tests, nbdev and GitHub integration, making Pypi releases and anything else you would normally use the command line for in a project.
+Normally, project code is written in a Jupyter notebook and the project managed from the command line. Developing in Colab we don't have a separate command line as such and instead access command line functionality from notebook cells using the os module and ! or % prefixes.
+While it is quite possible to manage an nbdev project entirely from within development notebooks, having code for two different purposes - project code and command line code - in the same notebook quickly becomes cumbersome and a source of confusion. An alternative approach is to set up a Colab notebook outside of the project itself to use exclusively exclusively as the command line - a 'command line notebook` if you like. All that is required is to make sure that the current working directory of the command line notebook is within the project directory on Google Drive and any commands and scripts run in the command line notebook will execute in respect to the project files. We can use the project management notebook for running tests, nbdev and GitHub integration, making PyPi releases and pretty much anything else you would normally use the command line for.
 
 ## Create a project management notebook.
 
@@ -53,17 +48,17 @@ You are now set up to manage an nbdev project. But first you need to create one!
 
 ## Create a new project
 
-1.  Follow the nbdev tutorial https://nbdev.fast.ai/tutorial/ to generate a new Github repository from the nbdev template repo https://github.com/fastai/nbdev_template/generate (you must be logged in to your Github account for this to work) and edit the settings.ini file of the new repository as instructed. Don't forget also to set up GitHub Pages for your new repository, selecting the 'master branch/docs folder' option.
+1.  Follow the nbdev tutorial `https://nbdev.fast.ai/tutorial/` to generate a new Github repository from the nbdev template repo `https://github.com/fastai/nbdev_template/generate` (you must be logged in to your Github account for this to work) and edit the settings.ini file of the new repository as instructed. Don't forget also to set up GitHub Pages for your new repository, selecting the 'master branch/docs folder' option.
 
 2. If your project needs to install other libraries add these, separated by a spaces, to the requirements line in settings.ini.
 
-3. From your project management notebook (created above) clone the new remote GitHub repository to your Google Drive by typing the following code and following the instructions to enter the required information. Successfully cloned repositories are automatically configured for integration with the remote repository and `nbdev_git_hooks` is installed. `Nbdev_git_hooks` gives smoother Github integration by cleaning up notebook metadata before git pushes. 
+3. From your project management notebook (created above) clone the new remote GitHub repository to your Google Drive by typing the following code and following the instructions to enter the required information. Successfully cloned repositories are automatically configured for integration with the remote repository and `nbdev_git_hooks` is installed  (`Nbdev_git_hooks` gives smoother Github integration by cleaning up notebook metadata). Entering sensitive user information into a form, avoids hardcoding it into the notebook (as a function arguement or class attibute,  for example) where there is then a risk of accidental upload to GitHub if the user forgets to delete it before a push. 
 ```
 clone_new_repo()
 ```
-> **CAUTION.** The users GitHub username and password are stored (unencrypted) in the cloned repository's `.git/config` file to allow automatic authentication when Colab interacts with GitHub during git pushes. They need to be stored in advance because Colab has no facility for prompting users for authentication details from within Colab notebooks. This is far from ideal but there appears no way around it and so users must be careful NOT to share the cloned repository folder or files from Google Drive as this risks exposing their GitHub credentials. 
+> **CAUTION.** The users GitHub username and password are stored (unencrypted) in the cloned repository's `.git/config` file to allow automatic authentication when Colab interacts with GitHub during git pushes. They need to be stored in advance because Colab has no facility for prompting users for authentication details from within Colab notebooks. This is far from ideal but there appears no way around it and so users must be careful NOT to share the cloned repository folder or files from Google Drive as this risks exposing their GitHub credentials. By default the `.git/config` file is '.gitignored' and not pushed to GitHub.
 
-4.  Swap into the newly cloned repository on Google Drive.
+4.  Change directory into the newly cloned repository on Google Drive.
 ```
 change_dir('path_to_repo') 
 ```
@@ -71,16 +66,16 @@ or
 ```
  %cd path_to_repo
 ```
-Check cloning was successful by printing out the contents of the settings.ini file
+Check cloning was successful by printing out the contents of the settings.ini file. Take this oppurtunity to make sure you have made all the necessary changes to settings.ini. 
 ```
 ! cat settings.ini
 ```
 
-From here follow the instructions in the [nbdev docs](https: //nbdev.fast.ai/) and [setup tutorial](https://nbdev.fast.ai/tutorial/) to make an initial build of the project library and documentation (i.e. run !nbdev_bulld_lib then !nb_build_docs from the project management notebook).
+From here, follow the instructions in the [nbdev docs](https: //nbdev.fast.ai/) and [setup tutorial](https://nbdev.fast.ai/tutorial/) to make an initial build of the project library and documentation (i.e. run `!nbdev_build_lib` then `!nb_build_docs` in the command line notebook).
 
 ## Navigating your project
 
-Change directory to your Google Drive/Colab home directory '/content/drive/My Drive'
+Change directory to your Google Drive/Colab home directory `/content/drive/My Drive`
 
 `home_dir()`
 
@@ -92,7 +87,7 @@ Change directory to ```path```
 
 ## Adding a new notebook/module to your project
 
-See the tutorial page of the nbd_colab documentation.
+See the 'add a new notebook' page of the nbd_colab documentation.
 
 ## Working with nbdev and Colab notebooks
 
@@ -118,7 +113,7 @@ See the tutorial page of the nbd_colab documentation.
 *   Class methods are not automatically included in the documentation. Include those you want manually using `#show_doc(class.method)` in a cell after the cell containing the class or function. The method "Docstring" becomes the method description in the docs. 
 
 
-See the nbdev [documentation](https://nbdev.fast.ai/) for the full guide: 
+See the nbdev [documentation](https://nbdev.fast.ai/) for the full guide.
 
 ### Markdown references. 
 
@@ -130,21 +125,29 @@ See the nbdev [documentation](https://nbdev.fast.ai/) for the full guide:
 
 ## Dependencies and imports
 
-* Use the requirements setting in settings.ini to install any dependencies along with your project. Multiple library names should be separated by a space only, e.g. `requirements = fastcore nbdev xyz_lib`. Note that `!` generates an error when building the docs so put code such as `!install xyz` in a text cell or #hide it.
+* Use the `requirements` setting in `settings.ini` to install any dependencies required by your project. Multiple library names should be separated by a single space only, e.g. `requirements = fastcore nbdev xyz_lib`. Note that `!` generates an error when building the docs so `#hide` code such as `!install xyz` or put it into a text cell to show to users. 
 
-* Edit init.py with the name of modules to import with *. For example, add from .core import * to init.py to allow core to be imported with just from nbdev import *
+* Edit `init.py` with the name of modules to import with just `*`. For example, add `from .core import *` to `init.py` to allow `core` (and all other modules specified in this way) to be imported into notebooks with just `from nbdev import *`
+
+### Tests
+
+Nbdev has a great test integration in the form of `nbdev_test_nbs` and test_flags.
+
+ Note that tests are run locally at the programmer's discretion but `nbdev_test-nbs` is also run automatically as a GitHub Action when code is pushed. Thus, given the Colaboratory and GitHub python virtual environments are likely to differ, tests may pass when `nbdev_test_nbs` is run locally on Colab, but fail during a GitHub push (or vice versa!).
+
+See the [nbdev docs](https://nbdev.fast.ai/) for more information about testing and test_flags and see the troubleshooting page [here](https://hallmx.github.io/nbd_colab/troubleshooting/) if your tests aren't passing!
 
 ## Building, pushing and releasing your project
 
-In the project management notebook, change directory to the root directory of the project repository on Google Drive ```change_dir('path_to_repo')``` or ```%cd path_to_repo```. From here, all nbdev and Github commands should work as expected on the project:
+In the command line notebook, change directory to the root directory of the project/local repository on Google Drive ```change_dir('path_to_repo')``` or ```%cd path_to_repo```. From here, all nbdev and GitHub commands should work as expected:
 
-*    Build the library (.py modules), build the docs (.html files) and run tests with ```!nbdev_build_lib```, ```!nbdev_build_docs```, and ```!nbdev_test_nbs``` respectively (and in that order). See the [nbdev docs](https://nbdev.fast.ai/) and tutorial for all available commands . 
+*    Build the library (.py modules), build the docs (.html files) and check for diffs between notebook and scripts with ```!nbdev_build_lib```, ```!nbdev_build_docs```, and ```!nbdev_diff_nbs``` respectively (and in that order). See the [nbdev docs](https://nbdev.fast.ai/) and tutorial for all available commands . 
 
 *    Push to github with  ```!git.status```, ```!git add -A```, ```!git commit -am "message"```, and ```!git push```. All other Github commands (prefixed by !) should also work normally.
 
 *    Publish to [PyPi](https://pypi.org/) by following the instructions in the [nbdev tutorial](https://nbdev.fast.ai/tutorial/). Creating a _pypirc file in the user's home directory must be done manually with a text editor but ```!pip install twine``` and ```!make release``` work normally from Colab notebooks with nbdev installed. 
 
-
+The command line notebook can be adapted and customized to your particular workflow. 
 
 
 ## Docs

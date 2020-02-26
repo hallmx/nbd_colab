@@ -13,7 +13,7 @@ entries:
       title: Project setup with nbd_colab
       url: /core
     - output: web,pdf
-      title: Adding a new notebook
+      title: Add a new notebook
       url: /tutorial
     - output: web,pdf
       title: Troubleshooting

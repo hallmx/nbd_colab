@@ -38,7 +38,7 @@ summary: "The nbd_colab API exposes the following functions for helping set up a
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="drive_setup" class="doc_header"><code>drive_setup</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L15" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>drive_setup</code>()</p>
+<h4 id="drive_setup" class="doc_header"><code>drive_setup</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L16" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>drive_setup</code>()</p>
 </blockquote>
 <p>Connect the current Colab instance to the users Google Drive</p>
 
@@ -51,6 +51,23 @@ summary: "The nbd_colab API exposes the following functions for helping set up a
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#exoort</span>
+<span class="k">def</span> <span class="nf">_run_subprocess</span><span class="p">(</span><span class="n">cmd</span><span class="p">):</span>
+  <span class="s2">&quot;Run a subprocess and return success (0) or error (!0)&quot;</span>
+  <span class="n">process</span> <span class="o">=</span> <span class="n">Popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">process</span><span class="o">.</span><span class="n">returncode</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
@@ -68,7 +85,7 @@ summary: "The nbd_colab API exposes the following functions for helping set up a
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="clone_new_repo" class="doc_header"><code>clone_new_repo</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L59" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>clone_new_repo</code>()</p>
+<h4 id="clone_new_repo" class="doc_header"><code>clone_new_repo</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L61" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>clone_new_repo</code>()</p>
 </blockquote>
 <p>Clone nbdev template repo from github to google drive and configure</p>
 
@@ -100,7 +117,7 @@ summary: "The nbd_colab API exposes the following functions for helping set up a
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="change_dir" class="doc_header"><code>change_dir</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L120" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>change_dir</code>(<strong><code>path</code></strong>)</p>
+<h4 id="change_dir" class="doc_header"><code>change_dir</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L124" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>change_dir</code>(<strong><code>path</code></strong>)</p>
 </blockquote>
 <p>Change directory to 'path'</p>
 
@@ -124,7 +141,7 @@ summary: "The nbd_colab API exposes the following functions for helping set up a
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="home_dir" class="doc_header"><code>home_dir</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L126" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>home_dir</code>()</p>
+<h4 id="home_dir" class="doc_header"><code>home_dir</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L130" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>home_dir</code>()</p>
 </blockquote>
 <p>Change directory to the users home directory on Google Drive '/content/drive/My Drive'</p>
 

@@ -1,6 +1,6 @@
 ---
 
-title: Adding a new notebook
+title: Add a new notebook
 
 keywords: fastai
 sidebar: home_sidebar
@@ -38,6 +38,11 @@ summary: "A quick guide to adding a new Colaboratory notebook to your project re
 from google.colab import drive
 drive.mount('/content/drive')</code></pre>
 </li>
+<li><p>Add automatic reloading of modules when they change at source.</p>
+
+<pre><code>%load_ext autoreload
+%autoreload 2</code></pre>
+</li>
 <li><p>Required installs. Fastcore is required for running tests from nbdev.</p>
 
 <pre><code>#hide
@@ -70,6 +75,29 @@ notebook2script()</code></pre>
 </li>
 </ol>
 <p>You're ready to go.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Test-flags">Test flags<a class="anchor-link" href="#Test-flags">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>One more thing ... test_flags!</p>
+<p>Certain cells, allthough containing legitimate code, cause problems with nbdev's integrated test system. For example, the code above to mount google drive (point 2) causes open unmounted notebooks to stall during test runs and the notebook to fail. To deal with this, Nbdev has test_flags.</p>
+<p>Flags are denoted by <code>#&lt;flag_name&gt;</code> placed at the top of cells and signal to nbdev how that cell should be treated. Nbdev has a number of  built in flags, for example, <code>#exports</code> and <code>#hide</code> are flags, but we can also create custom test_flags to signal to nbdev that we want the cell contents excluded from test runs with <code>nbdev_test_nbs</code>.</p>
+<p>First, create one or more test_flags by editing the <code>tst_flags</code> setting of <code>settings.ini</code> with the desired flag, for example, <code>tst_flags = &lt;flag_name&gt;</code>. The name can be anything not already in use as a flag and multiple test flags can be separated by | . Next simply add the name of the flag preceeded by <code>#</code> to the top of notebook cells to be excluded from test runs. So, to exclude our troublesome <code>drive.mount</code> code above we can specify a test_flag in settings.ini with <code>tst_flags = tst_flag_colab</code> and them add <code>#test_flag_colab</code> to the top of the cell:</p>
+
+<pre><code>#hide
+#test_flag_colab
+from google.colab import drive
+drive.mount('/content/drive')</code></pre>
+<p>If your using Colab you are also likely writing code for GPUs, and device code tested with <code>nbdev_test_nbs</code> in a Colab CPU instance will raise a <code>cuda runtime error (100)</code> exception. You might, therefore, consider setting up another test_flag for this circumstance.</p>
+<p>Test_flags can be 'turned off' by passing it as an argument to the --flags attribute of <code>nbdev_test_nbs</code>, like this <code>nbdev_test_nbs --flag test_flag_colab</code>. In this case nbdev will ignore <code>#test_flag_colab</code> during test runs and include flagged cells for testing. You can create and use any number of test flags in this way and the end product is a low-overhead, flexible testing environment - thanks nbdev!</p>
 
 </div>
 </div>
