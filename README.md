@@ -87,7 +87,7 @@ Change directory to ```path```
 
 ## Adding a new notebook/module to your project
 
-See the 'add a new notebook' page of the nbd_colab documentation.
+See the 'Notebooks' page of the nbd_colab documentation [here](https://hallmx.github.io/nbd_colab/tutorial/).
 
 ## Working with nbdev and Colab notebooks
 
@@ -134,8 +134,7 @@ See the nbdev [documentation](https://nbdev.fast.ai/) for the full guide.
 Nbdev has a great test integration in the form of `nbdev_test_nbs` and test_flags.
 
  Note that tests are run locally at the programmer's discretion but `nbdev_test-nbs` is also run automatically as a GitHub Action when code is pushed. Thus, given the Colaboratory and GitHub python virtual environments are likely to differ, tests may pass when `nbdev_test_nbs` is run locally on Colab, but fail during a GitHub push (or vice versa!).
-
-See the [nbdev docs](https://nbdev.fast.ai/) for more information about testing and test_flags and see the troubleshooting page [here](https://hallmx.github.io/nbd_colab/troubleshooting/) if your tests aren't passing!
+background on testing and test_flags, the 'Notebooks' page [here](https://hallmx.github.io/nbd_colab/tutorial/) for using test_flags with Colab notebooks and the troubleshooting page [here](https://hallmx.github.io/nbd_colab/troubleshooting/) if your tests aren't passing!
 
 ## Building, pushing and releasing your project
 
@@ -149,6 +148,10 @@ In the command line notebook, change directory to the root directory of the proj
 
 The command line notebook can be adapted and customized to your particular workflow. 
 
+
+## Templates
+
+We provide a minimal project code template notebook (03_nbtemplayte.ipynb) and command line template (04_cltemplate.ipynb) to get you started. These can be viewed in the docs and downloaded from GitHub for use. Customize them to your particular project or workflow. 
 
 ## Docs
 

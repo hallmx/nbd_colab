@@ -106,7 +106,7 @@ summary: "There are a number of quirks and gotchas to be aware of when working w
 
 <pre><code>!git config user.email "email"
 !git config user.name "username"</code></pre>
-<p>If you used 'clone_new_repo()' then these two steps should have ben done automatically.</p>
+<p>If you used <code>clone_new_repo()</code> to set up your local repo then these two steps should have ben done automatically.</p>
 </li>
 <li><p>Nbdev uses Git Actions to run a short yaml script of command line instructions with each git push. These include checking the notebooks can be opend and read (<code>nbev_read_nbs</code>), checking for diffs (<code>nbdev_diff_nbs</code>) and running tests on all notebooks with <code>nbdev_test_nbs</code>). Problems arising don't necessarily cause the push to fail but will alert the problem by placing a 'red cross' rather than 'green tick' next to the latest commit label on the repo page.  Click on the red cross to show the GitHub Actions panel and trace the problem. Then back to the project notebooks to debug.</p>
 </li>

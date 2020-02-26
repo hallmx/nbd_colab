@@ -10,14 +10,20 @@ entries:
       title: Overview
       url: /
     - output: web,pdf
-      title: Project setup with nbd_colab
+      title: Core
       url: /core
     - output: web,pdf
-      title: Add a new notebook
+      title: Notebooks
       url: /tutorial
     - output: web,pdf
       title: Troubleshooting
       url: /troubleshooting
+    - output: web,pdf
+      title: nbtemplate
+      url: /nbtemplate
+    - output: web,pdf
+      title: Example command line notebook
+      url: /cltemplate
     output: web
     title: nbd_colab
   output: web

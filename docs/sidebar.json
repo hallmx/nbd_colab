@@ -1,8 +1,10 @@
 {
   "nbd_colab": {
     "Overview": "/",
-    "Project setup with nbd_colab": "/core",
-    "Add a new notebook": "/tutorial",
-    "Troubleshooting": "/troubleshooting"
+    "Core": "/core",
+    "Notebooks": "/tutorial",
+    "Troubleshooting": "/troubleshooting",
+    "nbtemplate": "/nbtemplate",
+    "Example command line notebook": "/cltemplate"
   }
 }
