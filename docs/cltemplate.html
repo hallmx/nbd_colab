@@ -199,7 +199,7 @@ summary: "A minimal template for a 'command line notebook' to manage an nbdev pr
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># check the CWD is the right project directory</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># check the CWD is the desired project directory</span>
 <span class="o">%</span> <span class="n">cd</span> <span class="o">/</span><span class="n">content</span><span class="o">/</span><span class="n">drive</span><span class="o">/</span><span class="n">My</span> <span class="n">Drive</span><span class="o">/</span><span class="n">nbd_colab</span>
 <span class="o">!</span>pwd
 <span class="o">!</span>ls
@@ -323,7 +323,7 @@ summary: "A minimal template for a 'command line notebook' to manage an nbdev pr
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># check the CWD is the right project directory</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># check the CWD is the desired project directory</span>
 <span class="o">%</span> <span class="n">cd</span> <span class="o">/</span><span class="n">content</span><span class="o">/</span><span class="n">drive</span><span class="o">/</span><span class="n">My</span> <span class="n">Drive</span><span class="o">/</span><span class="n">nbd_colab</span>
 <span class="o">!</span>pwd
 <span class="o">!</span>ls
@@ -389,7 +389,7 @@ summary: "A minimal template for a 'command line notebook' to manage an nbdev pr
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Occasionally we'l want to pull as well</p>
+<p>Occasionally we'll want to pull as well</p>
 
 </div>
 </div>
@@ -399,7 +399,7 @@ summary: "A minimal template for a 'command line notebook' to manage an nbdev pr
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>git pull
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># !git pull</span>
 </pre></div>
 
     </div>
@@ -464,7 +464,8 @@ summary: "A minimal template for a 'command line notebook' to manage an nbdev pr
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>If 'make release' fails with 'file already exists' error, it is likely because of incompatible version numbers between the project repo and PyPi. Solve by bumping the repo version to match PyPi's. This can be done with the <code>nbdev_bump</code> which bumps the repo version number by 0.0.1 or <code>nbdev_bump_version(part="Part of version to bump")</code>, which increments the <code>part</code> of the version number by 1. It can also be done simply by manually editing <code>settings.ini</code> to match the PyPi release number.</p>
+<p>If 'make release' fails with 'file already exists' error, it is likely because of incompatible version numbers between the project repo and PyPi. Solve by bumping the repo version to match PyPi's. This can be done with the <code>nbdev_bump</code> or <code>nbdev_bump_version(part="Part of version to bump")</code> or by simply editing <code>settings.ini</code> to match the PyPi release number.</p>
+<p>To bumps the repo version number by 0.0.1</p>
 
 </div>
 </div>
@@ -474,9 +475,27 @@ summary: "A minimal template for a 'command line notebook' to manage an nbdev pr
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>nbdev_bump_version<span class="o">(</span><span class="nv">part</span><span class="o">=</span><span class="s2">&quot;Part of version to bump&quot;</span><span class="o">)</span>
-<span class="c1"># or </span>
-<span class="o">!</span>nbdev_bump
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># !nbdev_bump</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>or, to increment a part of the version number by 1</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># !nbdev_bump_version(part=&quot;Part of version to bump&quot;)</span>
 </pre></div>
 
     </div>
