@@ -39,7 +39,7 @@ summary: "Wrapper, resources and documentation around fastai nbdev to streamline
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Overview">Overview<a class="anchor-link" href="#Overview">&#182;</a></h2><p>Nbdev is a system for exploratory programming using Jupyter notebooks developed by Jeremy Howard and Sylvain Gugger of fastai aimed at helping python developers and software engineers practice literate programming. Many of these use Google Colaboratory (Colab) to develop and run GPU accelerated code, and while nbdev works perfectly well with Colab's Jupyter notebooks, there are few tricks and twists to creating a smooth workflow with nbdev, GitHub, Google Colab and Drive.</p>
-<p>Here we describe an approach to using nbdev with Google Colab and Google Drive, provide some useful tools for GitHub integration and add some nbdev-colab specific documentation including troubleshooting and testing advice. Further information on nbdev itself can be found in the <a href="https://nbdev.fast.ai/">nbdev docs</a> and/or the <a href="https://nbdev.fast.ai/tutorial/">get started tutorial</a>.</p>
+<p>Here we describe an approach to using nbdev with Google Colab and Google Drive, provide some useful tools for GitHub integration and add some nbdev-colab specific documentation including troubleshooting and testing advice. Further information on nbdev itself can be found in the nbdev <a href="https://nbdev.fast.ai/">documentation</a> and <a href="https://nbdev.fast.ai/tutorial/">tutorial</a>.</p>
 
 </div>
 </div>
@@ -100,7 +100,7 @@ drive.mount('/content/drive')</code></pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ol>
-<li><p>Follow the <a href="https://nbdev.fast.ai/tutorial/">nbdev tutorial</a> to generate a new Github repository from the <a href="https://github.com/fastai/nbdev_template/generate">nbdev template repo</a> (you must be logged in to your Github account for this to work) and edit the settings.ini file of the new repository as instructed. Don't forget also to set up GitHub Pages for your new repository, selecting the 'master branch/docs folder' option.</p>
+<li><p>Follow the nbdev <a href="https://nbdev.fast.ai/">documentation</a> and <a href="https://nbdev.fast.ai/tutorial/">tutorial</a> to generate a new Github repository from the <a href="https://github.com/fastai/nbdev_template/generate">nbdev template repository</a> (you must be logged in to your Github account for this to work) and edit the settings.ini file of the new repository as instructed. Don't forget also to set up GitHub Pages for your new repository, selecting the 'master branch/docs folder' option.</p>
 </li>
 <li><p>If your project needs to install other libraries add these, separated by a spaces, to the requirements line in settings.ini.</p>
 </li>
@@ -121,7 +121,7 @@ drive.mount('/content/drive')</code></pre>
 <pre><code>! cat settings.ini</code></pre>
 </li>
 </ol>
-<p>From here, follow the instructions in the <a href="https: //nbdev.fast.ai/">nbdev docs</a> and <a href="https://nbdev.fast.ai/tutorial/">setup tutorial</a> to make an initial build of the project library and documentation (i.e. run <code>!nbdev_build_lib</code> then <code>!nb_build_docs</code> in the command line notebook).</p>
+<p>From here, follow the instructions in the nbdev <a href="https: //nbdev.fast.ai/">documentation</a> and <a href="https://nbdev.fast.ai/tutorial/">tutorial</a> to make an initial build of the project library and documentation (i.e. run <code>!nbdev_build_lib</code> then <code>!nb_build_docs</code> in the command line notebook).</p>
 
 </div>
 </div>
@@ -182,9 +182,9 @@ drive.mount('/content/drive')</code></pre>
 </li>
 <li><p>A thick blue line is added above the documentation for a class. To include a thick blue line divider elsewhere, start a text cell with ## (two hashes).</p>
 </li>
-<li><p>Functions and classes are the only code that is included in the documentation when #export or #exports are used. Other code can be included just. So <code>#exports; !import xyzlib</code> will cause the import statement to be included in the module <code>.py</code> file (where it need to be) but will not be visible in the docs.</p>
+<li><p>Only functions and classes are included in the documentation of cells flagged with <code>#export</code> or <code>#exports</code>. Other code is converted to script but not included in the docs.</p>
 </li>
-<li><p>Tests are best placed in a separate cell without any <code>#</code>statements. They will run with the notebook and <code>!nbdev_test_nbs</code>, be included in the documentation but excluded from the module <code>.py</code> files. <code>#hide</code> cells with tests you don't want including in the docs.</p>
+<li><p>Tests are best placed in a separate cell without any flags. There, they will always be run with <code>nbdev_test_nbs</code> and be included in the documentation but excluded from the script <code>.py</code> file. <code>#hide</code> cells with tests you don't want including in the docs.</p>
 </li>
 <li><p>The "Docstring" of classes and functions is automatically formatted as the class or function description in the documentation</p>
 </li>
@@ -232,7 +232,7 @@ drive.mount('/content/drive')</code></pre>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Nbdev has a great test integration in the form of <code>nbdev_test_nbs</code> and test_flags.</p>
 <p>Note that tests are run locally at the programmer's discretion but <code>nbdev_test-nbs</code> is also run automatically as a GitHub Action when code is pushed. Thus, given the Colaboratory and GitHub python virtual environments are likely to differ, tests may pass when <code>nbdev_test_nbs</code> is run locally on Colab, but fail during a GitHub push (or vice versa!).
-background on testing and test_flags, the 'Notebooks' page <a href="https://hallmx.github.io/nbd_colab/tutorial/">here</a> for using test_flags with Colab notebooks and the troubleshooting page <a href="https://hallmx.github.io/nbd_colab/troubleshooting/">here</a> if your tests aren't passing!</p>
+Read more about testing and test_flags on the nbdev <a href="https://nbdev.fast.ai/tests">documentation</a>, about using test_flags with Colab on the 'Notebooks' page <a href="https://hallmx.github.io/nbd_colab/tutorial/">here</a> and if your tests aren't passing, the 'Troubleshooting' page <a href="https://hallmx.github.io/nbd_colab/troubleshooting/">here</a></p>
 
 </div>
 </div>
@@ -247,7 +247,7 @@ background on testing and test_flags, the 'Notebooks' page <a href="https://hall
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In the command line notebook, change directory to the root directory of the project/local repository on Google Drive <code>change_dir('path_to_repo')</code> or <code>%cd path_to_repo</code>. From here, all nbdev and GitHub commands should work as expected:</p>
 <ul>
-<li><p>Build the library (.py modules), build the docs (.html files) and check for diffs between notebook and scripts with <code>!nbdev_build_lib</code>, <code>!nbdev_build_docs</code>, and <code>!nbdev_diff_nbs</code> respectively (and in that order). See the <a href="https://nbdev.fast.ai/">nbdev docs</a> and tutorial for all available commands .</p>
+<li><p>Build the library (.py modules), build the docs (.html files) and check for diffs between notebook and scripts with <code>!nbdev_build_lib</code>, <code>!nbdev_build_docs</code>, and <code>!nbdev_diff_nbs</code> respectively (and in that order). See the nbdev <a href="https://nbdev.fast.ai/">documentation</a> for all available commands .</p>
 </li>
 <li><p>Push to github with  <code>!git.status</code>, <code>!git add -A</code>, <code>!git commit -am "message"</code>, and <code>!git push</code>. All other Github commands (prefixed by !) should also work normally.</p>
 </li>

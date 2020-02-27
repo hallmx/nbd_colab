@@ -34,7 +34,7 @@ summary: "A quick guide to adding a new Colaboratory notebook to your project re
 <p>Create a new python 3 notebook in Gooogle Colaboratory (Colab) and name it according to the nbdev convention of incremental numbering (00, 01, 02 etc) followed by an underscore and a name describing its contents. For example, if this is the third notebook added to the project, and it contains tests, an appropriate name might be '03_tests.ipynb'. Note that the new notebook may not be created directly in the project repository on Google Drive. If not, locate it on your Google Drive (commonly the 'Colab Notebooks' folder in '/My Drive'), and move it to the project repo by right clicking and selecting 'move'.</p>
 <p>Then add and run the following code snippets in separate cells.</p>
 <ol>
-<li><p>In the first cell add the following code where <code>&lt;module&gt;</code> is the name of the .py file that the notebook will create. In the case of the 03_tests.ipynb notebook, the module name should be 'tests'. Submodules can be specified with <code>&lt;module.submodule</code>.</p>
+<li><p>In the first cell add the following code where <code>&lt;module&gt;</code> is the name of the .py file that the notebook will create. In the case of the 03_tests.ipynb notebook, the module name should be 'tests'. Submodules can be specified with <code>&lt;module.submodule&gt;</code>.</p>
 
 <pre><code># default_exp &lt;module&gt;</code></pre>
 </li>
@@ -102,7 +102,7 @@ notebook2script()</code></pre>
 #test_flag_colab
 from google.colab import drive
 drive.mount('/content/drive')</code></pre>
-<p>If your using Colab you are also likely writing code for GPUs, and device code tested with <code>nbdev_test_nbs</code> in a Colab CPU instance will raise a <code>cuda runtime error (100)</code> exception. You might, therefore, consider setting up another test_flag for this circumstance.</p>
+<p>If your using Colab you are also likely writing code for GPUs, and device code tested with <code>nbdev_test_nbs</code> in a Colab CPU instance will raise a <code>cuda runtime error (100)</code> exception. You might, therefore, consider setting up another test_flag for this circumstance. Use the built in <code>#all_flag</code> to exclude the entire notebook from tests.</p>
 <p>Test_flags can be 'turned off' by passing it as an argument to the --flags attribute of <code>nbdev_test_nbs</code>, like this <code>nbdev_test_nbs --flag test_flag_colab</code>. In this case nbdev will ignore <code>#test_flag_colab</code> during test runs and include flagged cells for testing. You can create and use any number of test flags in this way and the end product is a low-overhead, flexible testing environment - thanks nbdev!</p>
 
 </div>

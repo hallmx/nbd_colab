@@ -2,7 +2,8 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"check_input": "00_core.ipynb",
+index = {"StopExecution": "00_core.ipynb",
+         "check_input": "00_core.ipynb",
          "get_dest_dir": "00_core.ipynb",
          "get_repo": "00_core.ipynb",
          "drive_setup": "00_core.ipynb",

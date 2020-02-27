@@ -5,7 +5,7 @@ title: Troubleshooting
 keywords: fastai
 sidebar: home_sidebar
 
-summary: "There are a number of quirks and gotchas to be aware of when working with nbdev from Colaboratory. When you encounter a problem check the following. Many of them may seem obvious but can still trip you up and waste time - they have me!"
+summary: "There are a number of quirks and gotchas to be aware of when working with nbdev from Colaboratory. "
 ---
 <!--
 
@@ -26,7 +26,7 @@ summary: "There are a number of quirks and gotchas to be aware of when working w
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="1.-Make-sure-you-are-in-the-project-directory.">1. Make sure you are in the project directory.<a class="anchor-link" href="#1.-Make-sure-you-are-in-the-project-directory.">&#182;</a></h3><ul>
-<li><p>Imports, nbdev commands, and command line code (pretty well everything except <code>!pip install</code>) only work when the current working directory is within the project directory. This applies to both the command line notebook and project development notebooks so be sure to %cd into the project directory in both before you start working. Place a <code>%cd path_to_project_directory</code> instruction in an early cell (after installs but before any imports) in all your nbs so as not to forget!</p>
+<li><p>Imports, nbdev commands, and command line code (pretty well everything except <code>!pip install</code>) only work when the current working directory is within the project directory. This applies to both the command line notebook and project development notebooks so be sure to %cd into the project directory in both before you start working. Place a <code>%cd path_to_project_directory</code> command in an early cell (after installs but before any imports) of all your notebooks so as not to forget!</p>
 </li>
 <li><p>System errors can reset notebooks and return the current working directory to home (i.e. '/content'). Thus, following a system error, particularly in the command line notebook, always check that you are still in the project directory before continuing (<code>!pwd</code>).</p>
 </li>
@@ -39,13 +39,13 @@ summary: "There are a number of quirks and gotchas to be aware of when working w
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="2.-Local-imports-not-updating-when-imported-code-changes.">2. Local imports not updating when imported code changes.<a class="anchor-link" href="#2.-Local-imports-not-updating-when-imported-code-changes.">&#182;</a></h3><ul>
+<h3 id="2.-Local-imports-not-recognised/updating-as-expected.">2. Local imports not recognised/updating as expected.<a class="anchor-link" href="#2.-Local-imports-not-recognised/updating-as-expected.">&#182;</a></h3><ul>
 <li><p>As per the nbdev tutorial, set up autoreload by running the following code near the top of your notebook:</p>
 
 <pre><code>%load_ext autoreload
 %autoreload 2</code></pre>
 </li>
-<li><p>New local imoprts require a library rebuild to be recognised by Colab:  <code>nbdev_build_lib</code>.</p>
+<li><p>New local imoprts require a library rebuild to be recognised by Colab:  <code>!nbdev_build_lib</code>.</p>
 </li>
 <li><p>If the import is still not working as expected , check the source notebook's corresponding .py file. Is the new code there? Did you <code>#export</code> it from the source notebook?. If so, repeat the build then factory reset the importing notebook BEFORE rerunning the imports cell. T</p>
 </li>
@@ -57,7 +57,7 @@ summary: "There are a number of quirks and gotchas to be aware of when working w
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="3.-Show_doc-doesn't-give-the-expected-notebook-cell-output.">3. <code>Show_doc</code> doesn't give the expected notebook cell output.<a class="anchor-link" href="#3.-Show_doc-doesn't-give-the-expected-notebook-cell-output.">&#182;</a></h3><ul>
-<li>The nbdev <code>show_doc(class.method)</code> used to automatically generate documentation for class methods doesn't give the expected text output in Colab notebook cells, instead just a method definition. However, it works as expected when the documentation is actually built with <code>!nbdev_build_docs</code> so continue to use it as per the nbdev docs/tutorial (<a href="https://nbdev.fast.ai/">https://nbdev.fast.ai/</a>).</li>
+<li>The nbdev <code>#show_doc(class.method)</code> used to automatically generate documentation for class methods doesn't give the expected text output in Colab notebook cells, instead just a method definition. However, it works as expected when the documentation is actually built with <code>!nbdev_build_docs</code> so continue to use it as per the nbdev <a href="https://nbdev.fast.ai/showdoc">documentation</a>.</li>
 </ul>
 
 </div>
@@ -66,7 +66,7 @@ summary: "There are a number of quirks and gotchas to be aware of when working w
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="4.-nbdev_build_docs-fails-with-an-error-message.">4. <code>nbdev_build_docs</code> fails with an error message.<a class="anchor-link" href="#4.-nbdev_build_docs-fails-with-an-error-message.">&#182;</a></h3><ul>
-<li>Most often, it is a failed library import in one of the notebooks. Make sure all imports are working (see above if not) and if so, rebuild the project library. If the error persists and it is not obvious why, reset the runtime in the notebook executing the <code>nbdev_build_docs</code> command (a factory reset may be required) and try again.</li>
+<li>Most often, it is a failed library import in one of the notebooks. Make sure all imports are working (see above if not) and if so, rebuild the project library. If the error persists and it is not obvious why, reset the runtime in the notebook executing the <code>!nbdev_build_docs</code> command (a factory reset may be required) and try again.</li>
 </ul>
 
 </div>
@@ -75,7 +75,18 @@ summary: "There are a number of quirks and gotchas to be aware of when working w
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="4.-nbdev_diff_nbs-generates-an-output.">4. <code>nbdev_diff_nbs</code> generates an output.<a class="anchor-link" href="#4.-nbdev_diff_nbs-generates-an-output.">&#182;</a></h3><ul>
-<li>Code diffs between the notebooks and corresponding .py scripts should be resolved <strong>before</strong> pushing to GitHub. If nbdev_diff_nbs gives an output, therefore, you'll need to either run <code>notebook2script()</code> or <code>script2notebook()</code>,depending on whether you want to keep the changes in the notebook or .py script respectively, to fix and try again. </li>
+<li><p>Code diffs between the notebooks and corresponding .py scripts should be resolved <strong>before</strong> pushing to GitHub. If nbdev_diff_nbs gives an output, therefore, you'll need to either run <code>!notebook2script()</code> or <code>!script2notebook()</code> as follows:</p>
+</li>
+<li><p>To keep the notebook code:</p>
+
+<pre><code># from nbdev.export import notebook2script
+# notebook2script()</code></pre>
+</li>
+<li><p>To keep the script code:</p>
+
+<pre><code># from nbdev.sync import script2notebook
+# script2notebook()</code></pre>
+</li>
 </ul>
 
 </div>
@@ -83,18 +94,18 @@ summary: "There are a number of quirks and gotchas to be aware of when working w
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="5.-nbdev_test_nbs-reports-failed-tests">5. <code>nbdev_test_nbs</code> reports failed tests<a class="anchor-link" href="#5.-nbdev_test_nbs-reports-failed-tests">&#182;</a></h3><p>The first thing to know is that for <code>nbdev_test_nbs</code> to give a clean bill of health, every notebook in the project must run from top to toe without stalling or raising an exception. So really, all cells are being tested and even if all the formal written tests pass, failure can arise from a stalled notebook or exception raised elsewhere.</p>
+<h3 id="5.-nbdev_test_nbs-reports-failed-tests">5. <code>nbdev_test_nbs</code> reports failed tests<a class="anchor-link" href="#5.-nbdev_test_nbs-reports-failed-tests">&#182;</a></h3><p><code>!nbdev_test_nbs</code> runs every notebook in the project top to toe reporting failed tests, any cell raising an exception or if notebook execution stalls.</p>
 <ul>
 <li>If tests are failing, first check the error output which should give you the notebook the exception arose in and the offending snippet of code. </li>
 </ul>
 <p>In addition:</p>
 <ol>
-<li><p>GPU code and instructions being tested in a Colab CPU instance, will cause a  <code>cuda runtime error (100)</code> when <code>nbdev_test_nbs</code> is run.</p>
+<li><p>GPU code and instructions being tested in a Colab CPU instance, will cause a  <code>cuda runtime error (100)</code> when <code>!nbdev_test_nbs</code> is run.</p>
 </li>
-<li><p>the code to mount Google Drive <code>from google.colab import drive; drive.mount('/content/drive')</code> in an open unmounted notebook will cause notebook execution to stall (and therefore tests fail) while awaiting user input. The same piece of code also causes a <code>module not found</code> error when <code>nbdev_test_nbs</code> is run during a GitHub push with resultant 'red cross ' on the repo homepage. This occurs because the required Google libraries are not installed on Github.</p>
+<li><p>the code to mount Google Drive in an open unmounted notebook will cause notebook execution to stall (and therefore tests to fail) while awaiting user input. The same piece of code also causes a <code>module not found</code> error when <code>nbdev_test_nbs</code> is run as a GitHub Action during a GitHub push because the required Google library is not installed on GitHub. In this case, the code is still pushed, but a red cross appears on the repo homepage to indicate a problem.</p>
 </li>
 </ol>
-<p>To handle 1. and 2. above, instead of changing the code or test environment, which are otherwise fine, an easier solution is to exclude those cells from testing. Luckily nbdev has a way of doing this - test flags. First define one or more flags in the <code>tst_flags</code> setting of <code>settings.ini</code>:  like this <code>tst_flags = test_flag1|test_flag2</code>, where test_flag can be any name not alraedy used as a flag by nbdev and multiple flags are separated by | . Placing one of these user defined test flags (e.g.' #test_flag1') at the top of a notebook cell causes <code>nbdev_test_nbs</code> to ignore that cellwhen runing tests and no exception will be raised. That should get you past these Colab related test edge cases but there's more to test flags so do read up on them in the nbdev docs.</p>
+<p>To handle 1. and 2. above, instead of changing the code or test environment, which are otherwise fine, an easier solution is to exclude those cells from testing. Luckily nbdev has a way of doing this - test flags. Test flags and how to use them are covered on the Notebooks page under 'Tests' <a href="https://hallmx.github.io/nbd_colab/tutorial/">here</a> and in the nbdev <a href="https://nbdev.fast.ai/">documentation</a>.</p>
 
 </div>
 </div>
@@ -108,7 +119,7 @@ summary: "There are a number of quirks and gotchas to be aware of when working w
 !git config user.name "username"</code></pre>
 <p>If you used <code>clone_new_repo()</code> to set up your local repo then these two steps should have ben done automatically.</p>
 </li>
-<li><p>Nbdev uses Git Actions to run a short yaml script of command line instructions with each git push. These include checking the notebooks can be opend and read (<code>nbev_read_nbs</code>), checking for diffs (<code>nbdev_diff_nbs</code>) and running tests on all notebooks with <code>nbdev_test_nbs</code>). Problems arising don't necessarily cause the push to fail but will alert the problem by placing a 'red cross' rather than 'green tick' next to the latest commit label on the repo page.  Click on the red cross to show the GitHub Actions panel and trace the problem. Then back to the project notebooks to debug.</p>
+<li><p>Nbdev uses Git Actions to run a short yaml script of command line instructions with each git push. These include checking the notebooks can be opend and read (<code>!nbev_read_nbs</code>), checking for diffs (<code>!nbdev_diff_nbs</code>) and running tests on all notebooks with <code>!nbdev_test_nbs</code>). Problems arising don't necessarily cause the push to fail but will alert the problem by placing a 'red cross' rather than 'green tick' next to the latest commit label on the repo page.  Click on the red cross to show the GitHub Actions panel and trace the problem. Then back to the project notebooks to debug.</p>
 </li>
 </ul>
 

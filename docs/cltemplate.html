@@ -5,7 +5,7 @@ title: Command line template
 keywords: fastai
 sidebar: home_sidebar
 
-summary: "A minimal template for a coomand line notebook to manage an nbdev_Colab project.  "
+summary: "A minimal template for a 'command line notebook' to manage an nbdev project in Google Colaboratory.  "
 ---
 <!--
 
@@ -108,7 +108,7 @@ summary: "A minimal template for a coomand line notebook to manage an nbdev_Cola
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Clone-a-new-repo-to-Google-Drive">Clone a new repo to Google Drive<a class="anchor-link" href="#Clone-a-new-repo-to-Google-Drive">&#182;</a></h2>
+<h2 id="Clone-a-new-repository-to-Google-Drive">Clone a new repository to Google Drive<a class="anchor-link" href="#Clone-a-new-repository-to-Google-Drive">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -156,7 +156,7 @@ summary: "A minimal template for a coomand line notebook to manage an nbdev_Cola
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>If the repo cloned successfully, but either git configuration or installing git hooks failed then use the following code to manually perform.</p>
+<p>If the repo cloned successfully, but either git user configuration or installing git hooks failed then use the following code to perform these tasks manually.</p>
 
 </div>
 </div>
@@ -166,8 +166,8 @@ summary: "A minimal template for a coomand line notebook to manage an nbdev_Cola
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span> git config user.email <span class="s2">&quot;&lt;github username&gt;&quot;</span>
-<span class="o">!</span> git config user.name <span class="s2">&quot;&lt;email&gt;&quot;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>git config user.email <span class="s2">&quot;&lt;github username&gt;&quot;</span>
+<span class="o">!</span>git config user.name <span class="s2">&quot;&lt;email&gt;&quot;</span>
 </pre></div>
 
     </div>
@@ -180,7 +180,7 @@ summary: "A minimal template for a coomand line notebook to manage an nbdev_Cola
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span> nbdev_install_git_hooks
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>nbdev_install_git_hooks
 </pre></div>
 
     </div>
@@ -215,7 +215,7 @@ summary: "A minimal template for a coomand line notebook to manage an nbdev_Cola
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span> nbdev_build_lib
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>nbdev_build_lib
 </pre></div>
 
     </div>
@@ -228,7 +228,7 @@ summary: "A minimal template for a coomand line notebook to manage an nbdev_Cola
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span> nbdev_build_docs
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>nbdev_build_docs
 </pre></div>
 
     </div>
@@ -241,7 +241,7 @@ summary: "A minimal template for a coomand line notebook to manage an nbdev_Cola
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span> nbdev_diff_nbs
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>nbdev_diff_nbs
 </pre></div>
 
     </div>
@@ -249,12 +249,62 @@ summary: "A minimal template for a coomand line notebook to manage an nbdev_Cola
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If nbdev_diff_nbs gives an output, run either notebook2script() or script2notebook() to fix the conflict.</p>
+<p>To keep the notebook code (most common)</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span> nbdev_test_nbs
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># from nbdev.export import notebook2script</span>
+<span class="c1"># notebook2script()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>or, to keep the script code:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># from nbdev.sync import script2notebook</span>
+<span class="c1"># script2notebook()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Run tests. Don't forget the optional <code>--flags</code> attribute if you want to overide test_flags.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>nbdev_test_nbs
 </pre></div>
 
     </div>
@@ -289,7 +339,7 @@ summary: "A minimal template for a coomand line notebook to manage an nbdev_Cola
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span> git status
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>git status
 </pre></div>
 
     </div>
@@ -302,8 +352,8 @@ summary: "A minimal template for a coomand line notebook to manage an nbdev_Cola
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span> git add -A
-<span class="o">!</span> git status
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>git add -A
+<span class="o">!</span>git status
 </pre></div>
 
     </div>
@@ -316,7 +366,7 @@ summary: "A minimal template for a coomand line notebook to manage an nbdev_Cola
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span> git commit -am <span class="s2">&quot;commit msg&quot;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>git commit -am <span class="s2">&quot;commit msg&quot;</span>
 </pre></div>
 
     </div>
@@ -329,7 +379,7 @@ summary: "A minimal template for a coomand line notebook to manage an nbdev_Cola
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span> git push
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>git push
 </pre></div>
 
     </div>
@@ -339,13 +389,33 @@ summary: "A minimal template for a coomand line notebook to manage an nbdev_Cola
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Make-a-PyPi-release">Make a PyPi release<a class="anchor-link" href="#Make-a-PyPi-release">&#182;</a></h2>
+<p>Occasionally we'l want to pull as well</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>git pull
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Upload-package-to-PyPi">Upload package to PyPi<a class="anchor-link" href="#Upload-package-to-PyPi">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>To make a release there must be a valis _pypirc file into users home directory on Google drive (see nbdev docs to set this up)</p>
+<p>To upload your library to PyPi as a package, there must be a valid _pypirc file in the user's home directory on Google drive (see nbdev docs to set this up)</p>
 
 </div>
 </div>
@@ -368,7 +438,7 @@ summary: "A minimal template for a coomand line notebook to manage an nbdev_Cola
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># check the CWD is the right project directory</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># check the CWD is the desired project directory</span>
 <span class="o">%</span> <span class="n">cd</span> <span class="o">/</span><span class="n">content</span><span class="o">/</span><span class="n">drive</span><span class="o">/</span><span class="n">My</span> <span class="n">Drive</span><span class="o">/</span><span class="n">nbd_colab</span>
 <span class="o">!</span>pwd
 <span class="o">!</span>ls
@@ -392,14 +462,21 @@ summary: "A minimal template for a coomand line notebook to manage an nbdev_Cola
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If 'make release' fails with 'file already exists' error, it is likely because of incompatible version numbers between the project repo and PyPi. Solve by bumping the repo version to match PyPi's. This can be done with the <code>nbdev_bump</code> which bumps the repo version number by 0.0.1 or <code>nbdev_bump_version(part="Part of version to bump")</code>, which increments the <code>part</code> of the version number by 1. It can also be done simply by manually editing <code>settings.ini</code> to match the PyPi release number.</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Bump version number (useful if version numbers and PyPi get out of sync causing &#39;make release&#39; to fail with &#39;file already exists&#39; error)</span>
-<span class="c1"># Can also just edit settings.init directly to an up to date version number if that is easier</span>
-<span class="o">!</span>nbdev_bump_version
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>nbdev_bump_version<span class="o">(</span><span class="nv">part</span><span class="o">=</span><span class="s2">&quot;Part of version to bump&quot;</span><span class="o">)</span>
+<span class="c1"># or </span>
+<span class="o">!</span>nbdev_bump
 </pre></div>
 
     </div>
