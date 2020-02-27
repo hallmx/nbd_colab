@@ -15,7 +15,7 @@ import urllib
 
 # Cell
 def check_input(type, input):
-  "Utility function to check the users input and exit cell if invalid"
+  "Check the users input and exit cell if invalid"
   if input == "":
     print(f'Error: {type} required ')
     raise StopExecution
@@ -23,7 +23,7 @@ def check_input(type, input):
 
 
 def get_dest_dir():
-  "Allows the user to input the destination folder for the cloned repo and checks it exists"
+  "Prompts user to input destination dir for repository clone and checks it exists"
   home_dir = "/content/drive/My Drive"
   dir = input(f'Destination directory {home_dir}/')
   dest_dir = home_dir+"/"+dir
@@ -36,7 +36,7 @@ def get_dest_dir():
 
 
 def get_repo(dir):
-  "Allows the user to enter the repo name and checks it doesn't already exist"
+  "Prompts user to enter repository name and checks it doesn't already exist in destination dir"
   repo = check_input('repository name', input('Repo name: '))
   repo_path = dir+"/"+repo
   path_exists = os.path.exists(repo_path)
@@ -48,7 +48,7 @@ def get_repo(dir):
 
 # Cell
 class StopExecution(Exception):
-    "Gracefully stop cell execution"
+    "Gracefully exit cell execution"
     def _render_traceback_(self):
         pass
 
@@ -71,24 +71,28 @@ def home_dir():
   os.chdir(p)
 
 # Cell
-def run_subprocess(cmd, report):
-  "Run a subprocess and return success (0) or error (!0)"
+def run_subprocess(cmd):
+  "Run a subprocess and return success (0) or error (!0). "
   process = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
   process.wait()
+
+  # print any output or errors after converting bytecode to strings
   output, err = process.communicate()
-  if report:
-    if output: print(f"{output.decode()}")
-    if err: print(f"{err.decode()}")
+  if output: print(f"{output.decode()}")
+  if err: print(f"{err.decode()}")
+
+  # return success (0) or error (!0)
   return process.returncode
 
 # Cell
-def clone_new_repo(report=False):
+def clone_new_repo():
   "Clone nbdev GitHUb template repo to google drive and configure"
 
-  print('  Important Information:\n\
-  nbd_dev does not store user details but users Github username and password are stored in the cloned\n\
+  print("  IMPORTANT: PLEASE READ:\n\
+  nbd_dev does not store user details but user's Github username and password ARE stored in the cloned\n\
   repository on Google Drive to allow automatic authentication from Colaboratory notebooks.Take care\n\
-  therefore, NOT to share the cloned repository with anyone as this risks exposing user credentials.\n')
+  therefore, NOT to share the cloned repository with anyone as this risks exposing user credentials.\n\
+  See documentation for more details.")
 
   dest_dir = get_dest_dir()
   repo = get_repo(dest_dir)
@@ -105,7 +109,7 @@ def clone_new_repo(report=False):
 
     # clone the repo, purge user passsword immediately and check clone successful
     cmd_string = f'git clone https://{user}:{password}@github.com/{user}/{repo}.git'
-    ret = run_subprocess(cmd_string, report)
+    ret = run_subprocess(cmd_string)
     cmd_string, password = None, None
     assert not ret, 'Error: Clone failed. Please review entries and try again. User details purged'
     print(f'Repo {repo} successfully cloned to directory {dest_dir}')
@@ -124,8 +128,8 @@ def clone_new_repo(report=False):
     print(repo_dir)
 
     # save user email and username into local git repo to identify user to git
-    ret_user = run_subprocess(f'git config user.name {user}', report)
-    ret_email = run_subprocess(f'git config user.email {user_email}', report)
+    ret_user = run_subprocess(f'git config user.name {user}')
+    ret_email = run_subprocess(f'git config user.email {user_email}')
     user, user_email = None, None
     if ret_user or ret_email:
       msg = f'Git configuration failed. Please manually configure the local repo with username and email\n'
@@ -134,7 +138,7 @@ def clone_new_repo(report=False):
     print(msg)
 
     # install git hooks to automatically clean up notebook metadata
-    ret = run_subprocess('nbdev_install_git_hooks', report)
+    ret = run_subprocess('nbdev_install_git_hooks')
 
   # user cancelled
   else:

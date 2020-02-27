@@ -56,7 +56,29 @@ You are now set up to manage an nbdev project. But first you need to create one!
 ```
 clone_new_repo()
 ```
-> **CAUTION.** The users GitHub username and password are stored (unencrypted) in the cloned repository's `.git/config` file to allow automatic authentication when Colab interacts with GitHub during git pushes. They need to be stored in advance because Colab has no facility for prompting users for authentication details from within Colab notebooks. This is far from ideal but there appears no way around it and so users must be careful NOT to share the cloned repository folder or files from Google Drive as this risks exposing their GitHub credentials. By default the `.git/config` file is '.gitignored' and not pushed to GitHub.
+You will shown some important information to read then prompted to enter the following information:
+```
+Destination directory /content/drive/My Drive/:<desired destination directory on Google Drive>
+Repo name:<github repo name>
+Username:<github username>
+User email:<myemail@company.com>
+Password:··········
+Confirm and clone y/n?y
+```
+A successful clone should look like this:
+```
+...
+Cloning into '<repo name>'...
+```
+```
+Repo <repo name> successfully cloned to directory /content/drive/My Drive/
+New repo located. Changing directory to new repo
+/content/drive/My Drive//<repo name>
+New repo configured with username and email
+Executing: git config --local include.path ../.gitconfig
+Success: hooks are installed and repo's .gitconfig is now trusted
+```
+> **CAUTION.** The users GitHub username and password are now stored (unencrypted) in the cloned repository's `.git/config` file to allow automatic authentication when Colab interacts with GitHub during git pushes. They need to be stored in advance because Colab has no facility for prompting users for authentication details in real time from within Colab notebooks. This is far from ideal but there appears no way around it and so users must be careful NOT to share the cloned repository folder or files from Google Drive as this risks exposing their GitHub credentials. By default the `.git/config` file is '.gitignored' and not pushed to GitHub.
 
 4.  Change directory into the newly cloned repository on Google Drive.
 ```

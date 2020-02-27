@@ -107,7 +107,26 @@ drive.mount('/content/drive')</code></pre>
 <li><p>From your project management notebook (created above) clone the new remote GitHub repository to your Google Drive by typing the following code and following the instructions to enter the required information. Successfully cloned repositories are automatically configured for integration with the remote repository and <code>nbdev_git_hooks</code> is installed  (<code>nbdev_git_hooks</code> gives smoother Github integration by cleaning up notebook metadata). Entering sensitive user information into a form, avoids hardcoding it into the notebook (as a function arguement or class attibute,  for example) where there is then a risk of accidental upload to GitHub if the user forgets to delete it before a push.</p>
 
 <pre><code>clone_new_repo()</code></pre>
-<blockquote><p><strong>CAUTION.</strong> The users GitHub username and password are stored (unencrypted) in the cloned repository's <code>.git/config</code> file to allow automatic authentication when Colab interacts with GitHub during git pushes. They need to be stored in advance because Colab has no facility for prompting users for authentication details from within Colab notebooks. This is far from ideal but there appears no way around it and so users must be careful NOT to share the cloned repository folder or files from Google Drive as this risks exposing their GitHub credentials. By default the <code>.git/config</code> file is '.gitignored' and not pushed to GitHub.</p>
+<p>You will shown some important information to read then prompted to enter the following information:</p>
+
+<pre><code>Destination directory /content/drive/My Drive/:&lt;desired destination directory on Google Drive&gt;
+Repo name:&lt;github repo name&gt;
+Username:&lt;github username&gt;
+User email:&lt;myemail@company.com&gt;
+Password:··········
+Confirm and clone y/n?y</code></pre>
+<p>A successful clone should look like this:</p>
+
+<pre><code>...
+Cloning into '&lt;repo name&gt;'...</code></pre>
+
+<pre><code>Repo &lt;repo name&gt; successfully cloned to directory /content/drive/My Drive/
+New repo located. Changing directory to new repo
+/content/drive/My Drive//&lt;repo name&gt;
+New repo configured with username and email
+Executing: git config --local include.path ../.gitconfig
+Success: hooks are installed and repo's .gitconfig is now trusted</code></pre>
+<blockquote><p><strong>CAUTION.</strong> The users GitHub username and password are now stored (unencrypted) in the cloned repository's <code>.git/config</code> file to allow automatic authentication when Colab interacts with GitHub during git pushes. They need to be stored in advance because Colab has no facility for prompting users for authentication details in real time from within Colab notebooks. This is far from ideal but there appears no way around it and so users must be careful NOT to share the cloned repository folder or files from Google Drive as this risks exposing their GitHub credentials. By default the <code>.git/config</code> file is '.gitignored' and not pushed to GitHub.</p>
 </blockquote>
 </li>
 <li><p>Change directory into the newly cloned repository on Google Drive.</p>
