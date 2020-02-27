@@ -2,10 +2,14 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"drive_setup": "00_core.ipynb",
-         "clone_new_repo": "00_core.ipynb",
+index = {"check_input": "00_core.ipynb",
+         "get_dest_dir": "00_core.ipynb",
+         "get_repo": "00_core.ipynb",
+         "drive_setup": "00_core.ipynb",
          "change_dir": "00_core.ipynb",
-         "home_dir": "00_core.ipynb"}
+         "home_dir": "00_core.ipynb",
+         "run_subprocess": "00_core.ipynb",
+         "clone_new_repo": "00_core.ipynb"}
 
 modules = ["core.py"]
 

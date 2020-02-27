@@ -26,6 +26,15 @@ summary: "The nbd_colab API exposes the following functions to set up a new proj
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Utils">Utils<a class="anchor-link" href="#Utils">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
@@ -38,7 +47,79 @@ summary: "The nbd_colab API exposes the following functions to set up a new proj
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="drive_setup" class="doc_header"><code>drive_setup</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L17" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>drive_setup</code>()</p>
+<h4 id="check_input" class="doc_header"><code>check_input</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L24" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>check_input</code>(<strong><code>type</code></strong>, <strong><code>input</code></strong>)</p>
+</blockquote>
+<p>Utility function to check the users input and exit cell if invalid</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="get_dest_dir" class="doc_header"><code>get_dest_dir</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L32" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_dest_dir</code>()</p>
+</blockquote>
+<p>Allows the user to input the destination folder for the cloned repo and checks it exists</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="get_repo" class="doc_header"><code>get_repo</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L45" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_repo</code>(<strong><code>dir</code></strong>)</p>
+</blockquote>
+<p>Allows the user to enter the repo name and checks it doesn't already exist</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="API">API<a class="anchor-link" href="#API">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="drive_setup" class="doc_header"><code>drive_setup</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L57" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>drive_setup</code>()</p>
 </blockquote>
 <p>Connect the current Colab instance to the users Google Drive</p>
 
@@ -55,15 +136,6 @@ summary: "The nbd_colab API exposes the following functions to set up a new proj
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-
 <div class="output_wrapper">
 <div class="output">
 
@@ -71,40 +143,7 @@ summary: "The nbd_colab API exposes the following functions to set up a new proj
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="clone_new_repo" class="doc_header"><code>clone_new_repo</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L68" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>clone_new_repo</code>()</p>
-</blockquote>
-<p>Clone nbdev template repo from github to google drive and configure</p>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Function to clone a remote repository to the users Google Drive. Repositories will be cloned to '/content/drive/My Drive' by default but this can be customized to anywhere on the users Google Drive at the first prompt.</p>
-<p>Successfully cloned repositories are automatically configured with the users username and email (required for GitHub to recognise the local repo) and git hooks are installed with <code>nbdev_git_hooks</code>.<code>Nbdev_git_hooks</code> sanitises notebooks of unnecessary metadata prior to git pushes.</p>
-<p>Al user information is purged from nbdev immediately after use but persists in the local repository configuration file (.git.config).</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="change_dir" class="doc_header"><code>change_dir</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L130" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>change_dir</code>(<strong><code>path</code></strong>)</p>
+<h4 id="change_dir" class="doc_header"><code>change_dir</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L62" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>change_dir</code>(<strong><code>path</code></strong>)</p>
 </blockquote>
 <p>Change directory to 'path'</p>
 
@@ -128,7 +167,7 @@ summary: "The nbd_colab API exposes the following functions to set up a new proj
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="home_dir" class="doc_header"><code>home_dir</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L136" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>home_dir</code>()</p>
+<h4 id="home_dir" class="doc_header"><code>home_dir</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L68" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>home_dir</code>()</p>
 </blockquote>
 <p>Change directory to the users home directory on Google Drive '/content/drive/My Drive'</p>
 
@@ -139,6 +178,63 @@ summary: "The nbd_colab API exposes the following functions to set up a new proj
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="run_subprocess" class="doc_header"><code>run_subprocess</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L75" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>run_subprocess</code>(<strong><code>cmd</code></strong>, <strong><code>report</code></strong>=<em><code>False</code></em>)</p>
+</blockquote>
+<p>Run a subprocess and return success (0) or error (!0)</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="clone_new_repo" class="doc_header"><code>clone_new_repo</code><a href="https://github.com/hallmx/nbd_colab/tree/master/nbd_colab/core.py#L86" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>clone_new_repo</code>(<strong>**<code>kwargs</code></strong>)</p>
+</blockquote>
+<p>Clone nbdev GitHUb template repo to google drive and configure</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Function to clone a remote repository to the users Google Drive. Repositories will be cloned to '/content/drive/My Drive' by default but this can be customized to anywhere on the users Google Drive at the first prompt.</p>
+<p>Successfully cloned repositories are automatically configured with the users username and email (required for GitHub to recognise the local repo) and git hooks are installed with <code>nbdev_git_hooks</code>.<code>Nbdev_git_hooks</code> sanitises notebooks of unnecessary metadata prior to git pushes.</p>
+<p>Al user information is purged from nbdev immediately after use but persists in the local repository configuration file (.git.config).</p>
+
+</div>
+</div>
 </div>
     {% endraw %}
 </div>

@@ -48,11 +48,11 @@ You are now set up to manage an nbdev project. But first you need to create one!
 
 ## Create a new project
 
-1.  Follow the nbdev tutorial `https://nbdev.fast.ai/tutorial/` to generate a new Github repository from the nbdev template repo `https://github.com/fastai/nbdev_template/generate` (you must be logged in to your Github account for this to work) and edit the settings.ini file of the new repository as instructed. Don't forget also to set up GitHub Pages for your new repository, selecting the 'master branch/docs folder' option.
+1.  Follow the [nbdev tutorial](https://nbdev.fast.ai/tutorial/) to generate a new Github repository from the [nbdev template repo](https://github.com/fastai/nbdev_template/generate) (you must be logged in to your Github account for this to work) and edit the settings.ini file of the new repository as instructed. Don't forget also to set up GitHub Pages for your new repository, selecting the 'master branch/docs folder' option.
 
 2. If your project needs to install other libraries add these, separated by a spaces, to the requirements line in settings.ini.
 
-3. From your project management notebook (created above) clone the new remote GitHub repository to your Google Drive by typing the following code and following the instructions to enter the required information. Successfully cloned repositories are automatically configured for integration with the remote repository and `nbdev_git_hooks` is installed  (`Nbdev_git_hooks` gives smoother Github integration by cleaning up notebook metadata). Entering sensitive user information into a form, avoids hardcoding it into the notebook (as a function arguement or class attibute,  for example) where there is then a risk of accidental upload to GitHub if the user forgets to delete it before a push. 
+3. From your project management notebook (created above) clone the new remote GitHub repository to your Google Drive by typing the following code and following the instructions to enter the required information. Successfully cloned repositories are automatically configured for integration with the remote repository and `nbdev_git_hooks` is installed  (`nbdev_git_hooks` gives smoother Github integration by cleaning up notebook metadata). Entering sensitive user information into a form, avoids hardcoding it into the notebook (as a function arguement or class attibute,  for example) where there is then a risk of accidental upload to GitHub if the user forgets to delete it before a push. 
 ```
 clone_new_repo()
 ```
